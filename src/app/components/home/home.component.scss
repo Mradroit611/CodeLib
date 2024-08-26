@@ -1,0 +1,83 @@
+/* styles.scss */
+
+/* Background Image Section */
+.background-image-section {
+    position: relative;
+    height: 300px; /* Default height for larger screens */
+    background: url('https://img-c.udemycdn.com/notices/web_carousel_slide/image/4efd3b84-91c8-4a9f-b4c7-4ba1d07fa425.png') no-repeat center center;
+    background-size: cover;
+    color: #fff; /* Text color for contrast */
+    
+    .background-content {
+      position: absolute;
+      top: 50%;
+      left: 1rem; /* Align to the left with some padding */
+      transform: translateY(-50%); /* Center vertically */
+      text-align: left; /* Align text to the left */
+      padding: 1rem;
+      border-radius: 8px; /* Rounded corners for the background content */
+      max-width: calc(100% - 2rem); /* Ensure it doesn’t exceed container width */
+      box-sizing: border-box; /* Include padding in the element's total width and height */
+      
+      h1 {
+        font-size: 2.5rem; /* Font size for the main title */
+        margin: 0 0 0.5rem;
+      }
+  
+      p {
+        font-size: 1.2rem; /* Font size for the subtitle */
+      }
+    }
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    padding: 2rem;
+    background-color: #f4f4f4; /* Light grey background for contrast with the image section */
+    text-align: center;
+  
+    h2 {
+      font-size: 2rem; /* Font size for the hero title */
+      margin-bottom: 1rem;
+    }
+  
+    p {
+      font-size: 1.1rem; /* Font size for the hero text */
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  }
+
+  /* Responsive Adjustments for Smaller Screens */
+  @media (max-width: 768px) {
+    .background-image-section {
+      height: 200px; /* Reduce height on smaller screens */
+      
+      /* Adding a dark overlay for better text visibility on small screens */
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4); /* Dark overlay with some transparency */
+        z-index: 1; /* Make sure it is behind the content */
+      }
+    }
+    
+    .background-content {
+      left: 0.5rem; /* Adjust left alignment for smaller screens */
+      max-width: calc(100% - 1rem); /* Adjust width to fit smaller screens */
+      padding: 0.5rem; /* Reduce padding on smaller screens */
+      z-index: 2; /* Ensure it is on top of the overlay */
+    }
+    
+    .background-content h1 {
+      font-size: 2rem; /* Adjust font size for smaller screens */
+    }
+  
+    .background-content p { 
+      font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+  }

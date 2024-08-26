@@ -1,0 +1,30 @@
+<div class="sign-in-overlay" (click)="close.emit()">
+  <div class="sign-in-modal" (click)="stopPropagation($event)">
+    <button class="close-btn" (click)="close.emit()" aria-label="Close">&times;</button>
+    <h2 *ngIf="!showResetPassword">Sign In</h2>
+    
+    <form *ngIf="!showResetPassword" (ngSubmit)="login()" #loginForm="ngForm">
+      <label for="email">Email:</label>
+      <input type="email" placeholder="Enter email" [formControl]="email">
+      <h5 [hidden]="email.valid || email.untouched">Please enter a valid email address</h5>
+      <label for="password">Password:</label>
+      <input type="password" placeholder="Enter password" [formControl]="password">
+      <h5 [hidden]="password.valid || password.untouched">Password must be at least 6 characters long</h5>
+      <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
+    </form>
+    
+    <div *ngIf="showResetPassword">
+      <h2>Reset Password</h2>
+      <form (ngSubmit)="resetPassword()" #resetPasswordForm="ngForm">
+        <label for="resetEmail">Email:</label>
+        <input type="email" placeholder="Enter your email" [formControl]="resetEmail">
+        <h5 [hidden]="resetEmail.valid || resetEmail.untouched">Please enter a valid email address</h5>
+        <button type="submit" [disabled]="resetPasswordForm.invalid">Send Reset Link</button>
+      </form>
+    <p>Go back to Sign-In page: <a (click)="showSignIn()">Sign In</a></p>
+    </div>
+
+    <p *ngIf="!showResetPassword">Don't have an account? <a (click)="showSignUp()">Sign Up</a></p>
+    <p *ngIf="!showResetPassword">Don't remember the password? <a (click)="showResetPasswordForm()">Forgot Password?</a></p>
+  </div>
+</div>

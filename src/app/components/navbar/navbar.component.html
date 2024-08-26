@@ -1,0 +1,51 @@
+<nav>
+  <!-- Hamburger Menu Button (Visible only on small screens) -->
+  <button class="menu-toggle" aria-label="Toggle navigation" (click)="toggleMenu()" *ngIf="isMobile">
+    <span class="menu-icon"></span>
+    <span class="menu-icon"></span>
+    <span class="menu-icon"></span>
+  </button>
+
+  <!-- Logo or Title -->
+  <h2><a routerLink="/">CodeLib</a></h2>
+
+  <!-- Navigation Links for Larger Screens -->
+  <ul class="nav-links" *ngIf="!isMobile">
+    <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+    <li><a routerLink="/codeSnippet" routerLinkActive="active">CodeSnippet</a></li>
+    <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+  </ul>
+
+  <!-- Button and Profile Icon -->
+  <div class="nav-actions">
+    <ng-container *ngIf="!isLoggedIn">
+      <button class="get-started-btn" (click)="openSignIn()">Get Started</button>
+    </ng-container>
+    <div class="profile-icon" (click)="toggleDropdown($event)">
+      <img src="user_icon.png" alt="Profile Icon">
+      <div class="dropdown" *ngIf="isDropdownOpen">
+        <div class="dropdown-item" (click)="navigateTo('/profile')">Profile</div>
+        <div class="dropdown-item" (click)="logout()">Logout</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div class="mobile-menu" *ngIf="isMenuOpen">
+    <button class="close-btn" (click)="toggleMenu()" aria-label="Close menu">×</button>
+    <ul>
+      <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li><a routerLink="/codeSnippet" routerLinkActive="active">CodeSnippet</a></li>
+      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+    </ul>
+  </div>
+  <!-- Sign In Modal -->
+  <app-sign-in 
+  *ngIf="showSignIn" 
+  (close)="onSignInClose()"
+  (signInSuccess)="onSignInSuccess()"
+  (switchToSignUp)="showSignUpFromSignIn()"
+  ></app-sign-in>
+
+  <!-- Sign Up Modal -->
+  <app-sign-up *ngIf="showSignUp" (signUpSuccess)="onSignUpSuccess()" (close)="onSignUpClose()" (switchToSignIn)="showSignInFromSignUp()"></app-sign-up>

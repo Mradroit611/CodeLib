@@ -1,0 +1,128 @@
+.footer {
+  background-color: #fff; // White background for the footer
+  color: #000; // Black text color for contrast
+  padding: 2rem 1rem; // Vertical and horizontal padding
+
+  .container {
+    width: 100%; // Ensure the container takes full width
+    max-width: 1200px;
+    margin: 0 auto; // Center container horizontally
+    padding: 0 1rem; // Padding to prevent touching edges
+    box-sizing: border-box; // Include padding in width calculations
+  }
+
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap; // Allow wrapping on smaller screens
+    justify-content: space-between; // Space out the sections evenly
+    margin-bottom: 2rem;
+    box-sizing: border-box; // Include padding and borders in element's total width and height
+
+    .footer-section {
+      flex: 1 1 30%; // Flex-basis set to 30% for better spacing
+      padding: 0 1rem;
+      margin-bottom: 1rem;
+      box-sizing: border-box; // Include padding and borders in width calculations
+
+      h5 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        color: #333; // Dark grey color for text
+        line-height: 1.5;
+      }
+
+      &.links {
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+
+          li {
+            margin-bottom: 0.5rem;
+
+            a {
+              color: #333; // Dark grey color for links
+              text-decoration: none;
+              position: relative; // Required for the pseudo-element
+              transition: color 0.3s; // Smooth transition
+
+              &::after {
+                content: ''; // Pseudo-element for the underline
+                position: absolute;
+                bottom: -2px; // Position underline just below the text
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: #000; // Black underline
+                transition: width 0.3s; // Smooth transition for underline width
+              }
+
+              &:hover {
+                color: #000; // Black color on hover
+                &::after {
+                  width: 100%; // Full width underline on hover
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #ddd; // Light grey border to separate sections
+    padding-top: 1rem;
+    text-align: center;
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+
+      .social-icon {
+        color: #333; // Dark grey color for social icons
+        transition: color 0.3s;
+
+        &:hover {
+          color: #000; // Darker color on hover for social icons
+        }
+
+        i {
+          font-size: 1.5rem; // Adjusted font size for social icons
+        }
+      }
+    }
+
+    .copyright {
+      color: #333; // Dark grey color for copyright text
+      font-size: 0.875rem;
+
+      #year {
+        display: inline;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column; // Stack sections vertically on smaller screens
+      align-items: center; // Center-align the sections
+    }
+
+    .footer-section {
+      flex: 1 1 100%; // Make each section take full width
+      margin: 0; // Remove extra margins
+      text-align: center; // Center-align text in each section
+    }
+
+    .footer-section.links {
+      margin: 1rem 0; // Adjust margins for "Quick Links" section in column layout
+    }
+  }
+}

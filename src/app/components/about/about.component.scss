@@ -1,0 +1,113 @@
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .about-page {
+    padding: 2rem;
+    background-color: #f4f4f4; // Light grey background for contrast
+  
+    .about-content {
+      display: flex;
+      align-items: center; // Vertically center items
+      gap: 2rem; // Space between image and text
+      max-width: 1200px; // Limit the max-width of the content
+      margin: 0 auto; // Center the content horizontally
+      padding: 2rem; // Padding around the content
+      opacity: 0; // Initially hide the content
+      animation: fadeInUp 1s forwards; // Apply the animation
+  
+      .about-image {
+        flex: 1 1 40%; // Image takes up 40% of the width
+        max-width: 100%; // Ensure it doesn't exceed its container width
+        border-radius: 8px; // Optional: rounded corners
+        overflow: hidden; // Ensure rounded corners work on the image
+  
+        img {
+          width: 100%; // Make image responsive
+          height: auto; // Maintain aspect ratio
+          transition: transform 0.3s ease; // Smooth transition for hover effect
+  
+          &:hover {
+            transform: scale(1.05); // Slight zoom effect on hover
+          }
+        }
+      }
+  
+      .about-text {
+        flex: 1 1 60%; // Text takes up 60% of the width
+        max-width: 100%; // Ensure it doesn't exceed its container width
+        display: flex;
+        flex-direction: column; // Stack paragraphs vertically
+        justify-content: center; // Center the content vertically
+        gap: 1rem; // Space between paragraphs
+  
+        h2 {
+          font-size: 2.5rem; // Font size for the title
+          margin-bottom: 1rem;
+          color: #333; // Dark grey color for the title
+          border-bottom: 2px solid #444; // Darker grey underline for emphasis
+          padding-bottom: 0.5rem;
+          display: inline-block; // Adjust the title to fit underline
+        }
+  
+        p {
+          font-size: 1rem; // Font size for the text
+          line-height: 1.5;
+          color: #555; // Dark grey color for text
+        }
+  
+        .cta-section {
+          margin-top: 2rem;
+          text-align: center;
+  
+          .cta-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            color: #fff; // White text color
+            background-color: #007bff; // Blue background color
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+  
+            &:hover {
+              background-color: #0056b3; // Darker blue on hover
+              transform: translateY(-2px); // Slight lift effect on hover
+            }
+          }
+  
+          .cta-description {
+            margin-top: 1rem;
+            font-size: 0.95rem; // Slightly smaller font size
+            color: #666; // Medium grey color for the description
+            line-height: 1.4; // Adjust line height for better readability
+          }
+        }
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .about-content {
+        flex-direction: column; // Stack image and text vertically on smaller screens
+        text-align: center; // Center-align text on smaller screens
+  
+        .about-image {
+          margin-bottom: 1rem; // Space between image and text when stacked
+        }
+  
+        .about-text {
+          flex: 1 1 auto; // Allow text to expand fully
+        }
+      }
+    }
+  }
+  

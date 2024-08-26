@@ -1,0 +1,261 @@
+  nav {
+    background-color: #fff;
+    color: #000;
+    padding: 0.8rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex: 1;
+      list-style: none;
+      margin: 0;
+
+      li {
+        a {
+          color: #000;
+          text-decoration: none;
+          font-size: 1rem;
+          padding: 0.5rem 1rem;
+          border-radius: 4px;
+          position: relative;
+          transition: color 0.3s;
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #000;
+            transition: width 0.3s;
+          }
+
+          &:hover,
+          &.active {
+            color: #000;
+            &::after {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      position: relative;
+
+      .menu-icon {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: #000;
+        margin: 4px 0;
+        transition: background-color 0.3s;
+
+        &:nth-child(2) {
+          width: 30px;
+        }
+      }
+
+      &:hover .menu-icon {
+        background-color: #333;
+      }
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: 'Roboto', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      a {
+        color: #000;
+        text-decoration: none;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .get-started-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: auto;
+        height: auto;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+
+      .profile-icon {
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          border: 1px solid black;
+        }
+
+        .dropdown {
+          position: absolute;
+          top: 50px;
+          right: 0;
+          background-color: #fff;
+          border-radius: 4px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          padding: 0.5rem 0;
+          width: 180px;
+          z-index: 1000;
+
+          .dropdown-item {
+            padding: 0.75rem 1rem;
+            color: #000;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            border-bottom: 1px solid #ddd;
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            &:hover {
+              background-color: #f0f0f0;
+            }
+          }
+          
+        }
+      }
+    }
+
+    .mobile-menu {
+      display: none; // Hide by default
+      position: absolute;
+      top: 100%; // Positioned right below the navbar
+      left: 0;
+      width: 100%;
+      max-width: 100vw; // Ensure it doesn't exceed viewport width
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      padding: 1rem;
+      box-sizing: border-box; // Ensure padding is included in width
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+        li {
+          width: 100%; // Ensure items take full width
+          a {
+            display: block; // Make links block elements for better padding
+            color: #000;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+
+            &:hover,
+            &.active {
+              background-color: #f0f0f0;
+              color: #000;
+            }
+          }
+        }
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        color: #000;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #333;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: flex; // Show the mobile menu when open
+        overflow: hidden; // Prevent content overflow
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      .get-started-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+      }
+
+      .menu-icon {
+        width: 20px;
+        height: 2px;
+        margin: 3px 0;
+
+        &:nth-child(2) {
+          width: 25px;
+        }
+      }
+    }
+
+    @media (min-width: 769px) {
+      .mobile-menu {
+        display: none;
+      }
+    }
+  }

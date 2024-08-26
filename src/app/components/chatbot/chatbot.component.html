@@ -1,0 +1,34 @@
+<div class="chatbot-container" #chatbotRef>
+    <!-- Chatbox Container -->
+    <div [ngClass]="{ 'chatbox-open': isOpen, 'chatbox-closed': !isOpen }" class="chatbox-wrapper">
+      <div *ngIf="isOpen" class="chatbox">
+        <!-- Close Button Positioned Outside Scrollable Area -->
+        <button (click)="toggleChatbot()" class="close-button">
+          <fa-icon [icon]="['fas', 'times']"></fa-icon>
+        </button>
+        <div class="messages">
+          <!-- Render chat messages -->
+          <div *ngFor="let msg of messages; let i = index" [ngClass]="{ 'message-from-bot': msg.fromBot, 'message-from-user': !msg.fromBot }" class="message">
+            {{ msg.text }}
+          </div>
+          <!-- Invisible div to scroll to -->
+          <div #messagesEnd></div>
+        </div>
+        <div class="input-container">
+          <input
+            type="text"
+            [(ngModel)]="input"
+            (keydown.enter)="handleSend()"
+            placeholder="Type your message..."
+            class="message-input"
+          />
+          <button (click)="handleSend()" class="send-button">Send</button>
+        </div>
+      </div>
+      <button *ngIf="!isOpen" (click)="toggleChatbot()" class="chat-icon">
+        <fa-icon [icon]="['fas', 'comments']"></fa-icon>
+        <div *ngIf="hasNewMessages" class="notification-badge">!</div>
+      </button>
+    </div>
+  </div>
+  
