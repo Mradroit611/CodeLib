@@ -13,6 +13,7 @@
   <ul class="nav-links" *ngIf="!isMobile">
     <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
     <li><a routerLink="/codeSnippet" routerLinkActive="active">CodeSnippet</a></li>
+    <li><a routerLink="/discussion" routerLinkActive="active">Discussion</a></li>
     <li><a routerLink="/about" routerLinkActive="active">About</a></li>
   </ul>
 
@@ -21,31 +22,46 @@
     <ng-container *ngIf="!isLoggedIn">
       <button class="get-started-btn" (click)="openSignIn()">Get Started</button>
     </ng-container>
-    <div class="profile-icon" (click)="toggleDropdown($event)">
+    <ng-container *ngIf="isLoggedIn">
+      <button class="logout-btn get-started-btn" (click)="logout()">Logout</button>
+    </ng-container>
+    <div class="profile-icon" *ngIf="isLoggedIn" (click)="toggleDropdown($event)">
       <img src="user_icon.png" alt="Profile Icon">
       <div class="dropdown" *ngIf="isDropdownOpen">
-        <div class="dropdown-item" (click)="navigateTo('/profile')">Profile</div>
-        <div class="dropdown-item" (click)="logout()">Logout</div>
+        <div class="dropdown-item" *ngIf="userEmail">
+          <span>{{ userEmail }}</span>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- Mobile Dropdown Menu -->
-  <div class="mobile-menu" *ngIf="isMenuOpen">
+  <div class="mobile-menu" *ngIf="isMenuOpen"> 
     <button class="close-btn" (click)="toggleMenu()" aria-label="Close menu">×</button>
     <ul>
       <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
       <li><a routerLink="/codeSnippet" routerLinkActive="active">CodeSnippet</a></li>
+    <li><a routerLink="/community" routerLinkActive="active">Community</a></li>
       <li><a routerLink="/about" routerLinkActive="active">About</a></li>
     </ul>
   </div>
+
+  <!-- Custom Alert -->
+  <app-custom-alert [message]="alertMessage" [show]="showAlert"></app-custom-alert>
+
   <!-- Sign In Modal -->
   <app-sign-in 
-  *ngIf="showSignIn" 
-  (close)="onSignInClose()"
-  (signInSuccess)="onSignInSuccess()"
-  (switchToSignUp)="showSignUpFromSignIn()"
+    *ngIf="showSignIn" 
+    (close)="onSignInClose()"
+    (signInSuccess)="onSignInSuccess()"
+    (switchToSignUp)="showSignUpFromSignIn()"
   ></app-sign-in>
 
   <!-- Sign Up Modal -->
-  <app-sign-up *ngIf="showSignUp" (signUpSuccess)="onSignUpSuccess()" (close)="onSignUpClose()" (switchToSignIn)="showSignInFromSignUp()"></app-sign-up>
+  <app-sign-up 
+    *ngIf="showSignUp" 
+    (signUpSuccess)="onSignUpSuccess()" 
+    (close)="onSignUpClose()" 
+    (switchToSignIn)="showSignInFromSignUp()"
+  ></app-sign-up>
+</nav>

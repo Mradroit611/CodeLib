@@ -1,0 +1,283 @@
+.list-container {
+  padding: 1rem;
+  max-width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+
+  .heading {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #333;
+    text-align: center;
+  }
+
+  .no-data {
+    text-align: center;
+    color: #888;
+    font-size: 1.2rem;
+  }
+
+  .item-list {
+    width: 100%;
+  }
+
+  .snippet-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, transform 0.3s;
+    max-height: 180px; // Adjusted height
+    overflow: hidden;
+
+    &:hover {
+      background-color: #f9f9f9;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      transform: scale(1.02);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+
+      .user-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 0.75rem;
+        object-fit: cover;
+      }
+
+      .user-details {
+        .user-name {
+          font-weight: bold;
+          color: #333;
+          margin-bottom: 0.25rem;
+        }
+
+        .item-title {
+          font-size: 1.1rem;
+          font-weight: 500;
+          color: #007bff;
+        }
+
+        .item-date {
+          font-size: 0.85rem;
+          color: #777;
+        }
+      }
+    }
+
+    .card-body {
+      flex: 1;
+      margin-bottom: 0.5rem;
+
+      .item-description {
+        font-size: 0.9rem;
+        color: #555;
+        line-height: 1.4;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .card-footer {
+      text-align: right;
+
+      .view-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+
+        &:active {
+          transform: scale(0.98);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .snippet-card {
+      max-height: none;
+      .card-header, .card-body, .card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .view-button {
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  // background-color: #f4f4f4;
+  padding: 20px;
+  box-sizing: border-box;  // Ensure padding is included in the width calculation
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;  // Prevents overflow
+}
+
+.hero-content {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;  // Ensure padding and border are included in width calculations
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.text-content {
+  max-width: 50%;
+  box-sizing: border-box;  // Ensure padding and border are included in width calculations
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+}
+
+.text-content h1 {
+  font-size: 2.5em;
+  margin: 0 0 20px 0;
+}
+
+.text-content p {
+  font-size: 1.2em;
+  margin: 0 0 20px 0;
+}
+
+.cta-button {
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px 20px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #007bff;
+  text-decoration: none;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.image-content {
+  max-width: 50%;  // Limit the width of the image container
+  box-sizing: border-box;  // Ensure padding and border are included in width calculations
+}
+
+.image-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Community Form Container */
+.community-form-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%; /* Default width for small screens */
+  max-width: 600px; /* Maximum width for larger screens */
+  height: auto; /* Auto height to accommodate content */
+  max-height: 80vh; /* Limit height to 80% of viewport height */
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  overflow-y: auto; /* Enable scrolling if content overflows */
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  margin-top: 20px; /* Add top margin */
+}
+
+/* Close Button */
+.community-form-container .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Body overflow handling */
+body.modal-open {
+  overflow: hidden; /* Prevent scrolling when the modal is open */
+}
+
+/* Backdrop to cover the screen */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 999; /* Behind the form */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .community-form-container {
+    width: 95%; /* Increase width for smaller screens */
+    max-width: none; /* Remove maximum width constraint */
+  }
+}
+
+@media (max-width: 480px) {
+  .community-form-container {
+    padding: 10px; /* Reduce padding on very small screens */
+    width: 100%; /* Full width on very small screens */
+  }
+}
+
+/* Additional Styling */
+.community-form-container h2 {
+  margin-top: 0; /* Ensure there's no top margin on the heading */
+}
+
+.community-form-container .form-group {
+  margin-bottom: 1rem; /* Add spacing between form groups */
+}
+
+.community-form-container button {
+  margin-top: 1rem; /* Add space above the submit button */
+}

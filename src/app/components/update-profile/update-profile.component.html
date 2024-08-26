@@ -1,0 +1,39 @@
+<div class="modal-overlay" (click)="closeModal($event)">
+  <div class="modal-content" (click)="stopPropagation($event)">
+    <h2>Update Profile</h2>
+    <form (ngSubmit)="onSubmit()" #updateForm="ngForm">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="profile.name" required />
+      </div>
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" [(ngModel)]="profile.username" required />
+      </div>
+      <div>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" [(ngModel)]="profile.age" required />
+      </div>
+      <div>
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" [(ngModel)]="profile.gender" required>
+          <option value="">Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div>
+        <label for="contact">Contact No:</label>
+        <input type="tel" id="contact" name="contact" [(ngModel)]="profile.contact" required />
+      </div>
+      <div>
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" [(ngModel)]="profile.address" required></textarea>
+      </div>
+
+      <button type="submit">Update</button>
+      <button type="button" (click)="closeModal()">Cancel</button>
+    </form>
+  </div>
+</div>

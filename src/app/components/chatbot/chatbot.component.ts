@@ -83,7 +83,7 @@ export class ChatbotComponent implements AfterViewChecked {
     }
 
     // Responses for Express
-    if (lowerCaseMessage.includes('express')) {
+    if (lowerCaseMessage.includes('express')) { 
       return "Express.js is a web application framework for Node.js. It provides a robust set of features to develop web and mobile applications.";
     }
 

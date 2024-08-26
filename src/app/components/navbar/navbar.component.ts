@@ -1,27 +1,34 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { AuthService } from '../../services/auth.service'; // Import AuthService
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SignInComponent } from '../sign-in/sign-in.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
+import { CustomAlertComponent } from '../../custom-alert/custom-alert.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule, CommonModule, SignInComponent, SignUpComponent],
+  imports: [RouterLink, RouterLinkActive, CustomAlertComponent ,FormsModule, CommonModule, SignInComponent, SignUpComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  showAlert = false;
+  alertMessage = '';
   isMenuOpen = false;
   isLoggedIn = false;
   isMobile = false;
   isDropdownOpen = false;
   showSignIn = false;
   showSignUp = false;
+  userEmail: string | null = null;
+  // router: any;
+  // route: any;
 
-  constructor(private renderer: Renderer2, private authService: AuthService) {}
+  constructor(private renderer: Renderer2, private authService: AuthService, private router: Router,
+    private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.checkScreenSize();
@@ -30,6 +37,11 @@ export class NavbarComponent implements OnInit {
     // Subscribe to authentication status changes
     this.authService.authStatus$.subscribe((authenticated: boolean) => {
       this.isLoggedIn = authenticated;
+    });
+
+    // Subscribe to user email
+    this.authService.getUserEmail().subscribe(email => {
+      this.userEmail = email;
     });
 
     this.renderer.listen('window', 'click', (event) => {
@@ -42,6 +54,16 @@ export class NavbarComponent implements OnInit {
       const clickedElement = event.target as HTMLElement;
       if (this.isMenuOpen && clickedElement.closest('.mobile-menu a')) {
         this.isMenuOpen = false;
+      }
+    });
+
+     // Handle query parameters for alert
+     this.route.queryParams.subscribe((params: { [x: string]: string; }) => {
+      if (params['alert'] === 'sign-in-required') {
+        console.log('Setting alert message');
+        this.alertMessage = 'You need to sign in to access this page.';
+        this.showAlert = true;
+        setTimeout(() => this.showAlert = false, 3000); // Hide alert after 3 seconds
       }
     });
   }
@@ -66,9 +88,21 @@ export class NavbarComponent implements OnInit {
     return dropdown?.contains(event.target as Node) ?? false;
   }
 
+  // navigateTo(route: string) {
+  //   console.log(`Navigating to ${route}`);
+  //   if (route === '/profile' && !this.isLoggedIn) {
+  //     this.alertMessage = 'You need to sign in to access the profile page.';
+  //     this.showAlert = true;
+  //     this.router.navigate(['/home']);
+  //   } else {
+  //     this.router.navigate([route]);
+  //   }
+  //   this.isDropdownOpen = false;
+  // }
   navigateTo(route: string) {
     console.log(`Navigating to ${route}`);
-    this.isDropdownOpen = false;
+    this.router.navigate([route]);
+    this.isDropdownOpen = false;  
   }
 
   logout() {
@@ -80,6 +114,16 @@ export class NavbarComponent implements OnInit {
       console.log('Error logging out:', error);
     });
   }
+
+  // handleNavigation(route: string) {
+  //   if (route === '/profile' && !this.isLoggedIn) {
+  //     this.alertMessage = 'You need to sign in to access the profile page.';
+  //     this.showAlert = true;
+  //     this.router.navigate(['/home']);
+  //   } else {
+  //     this.router.navigate([route]);
+  //   }
+  // }
 
   openSignIn() {
     if (!this.isLoggedIn) {

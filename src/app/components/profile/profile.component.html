@@ -1,0 +1,9 @@
+<div class="user-profile">
+  <p *ngIf="userEmail">Logged in as: {{ userEmail }}</p>
+  <p *ngIf="!userEmail">You are not logged in.</p>
+
+  <button (click)="openUpdateProfile()">Update Profile</button>
+
+  <!-- Modal for UpdateProfileComponent -->
+  <app-update-profile *ngIf="showUpdateProfile" (close)="closeUpdateProfile()"></app-update-profile>
+</div>

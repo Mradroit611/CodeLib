@@ -1,0 +1,12 @@
+// Add styles to handle the background blur effect
+:host {
+    display: block;
+  }
+  
+  body.modal-open {
+    overflow: hidden;
+  }
+  
+  // Add other styles as needed
+  
+  

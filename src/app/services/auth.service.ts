@@ -1,20 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, signOut, onAuthStateChanged, User } from "firebase/auth";
-import { BehaviorSubject } from 'rxjs';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signOut,
+  onAuthStateChanged,
+  User,
+} from "firebase/auth";
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private uid?: string;
+  getCurrentUser() {
+    throw new Error('Method not implemented.');
+  }
+  // private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
   private auth = getAuth();
+  private uid?: string;
   authStatus$ = new BehaviorSubject<boolean>(false);
+  private currentUserEmail$ = new BehaviorSubject<string | null>(null);
 
-  constructor(private router: Router) {
+  constructor(private router: Router, ) {
+    // const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    // this.currentUserSubject.next(user);
+    
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         this.uid = user.uid;
+        this.currentUserEmail$.next(user.email);
         if (user.emailVerified) {
           this.authStatus$.next(true);
         } else {
@@ -24,16 +42,31 @@ export class AuthService {
       } else {
         this.uid = undefined;
         this.authStatus$.next(false);
+        this.currentUserEmail$.next(null);
       }
     });
   }
 
+
+  getUserEmail(): Observable<string | null> {
+    return this.currentUserEmail$.asObservable();
+  }
+  
+  getUser(): Observable<User | null> {
+    return new Observable<User | null>((observer) => {
+      const unsubscribe = onAuthStateChanged(this.auth, (user) => {
+        observer.next(user);
+      });
+      // Cleanup subscription
+      return () => unsubscribe();
+    });
+  }
+
   isAuthenticated(): boolean {
-    // Ensure `this.uid` and `this.auth.currentUser` are properly checked
     return !!this.uid && !!this.auth.currentUser?.emailVerified;
   }
 
-  getUserid(): string | undefined {
+  getUserId(): string | undefined {
     return this.uid;
   }
 
@@ -70,15 +103,16 @@ export class AuthService {
     }
   }
 
-  signOut(): Promise<void> {
-    return signOut(this.auth)
-      .then(() => {
-        this.router.navigate(['/home']);
-      })
-      .catch((error) => {
-        console.error('Logout error:', error);
-        alert('Something went wrong while logging out.');
-      });
+  async signOut(): Promise<void> {
+    try {
+      await signOut(this.auth);
+      this.uid = undefined; // Clear UID on sign out
+      this.authStatus$.next(false);
+      this.router.navigate(['/home']);
+    } catch (error) {
+      console.error('Logout error:', error);
+      alert('Something went wrong while logging out.');
+    }
   }
 
   async resetPassword(email: string): Promise<void> {

@@ -1,0 +1,415 @@
+/* styles.scss */
+
+/* Background Image Section */
+.background-image-section {
+    position: relative;
+    height: 300px; /* Default height for larger screens */
+    background: url('dis_back.jpg') no-repeat center center;
+    background-size: cover;
+    color: #000; /* Text color for contrast */
+    overflow: hidden; /* Ensure no overflow from pseudo-element */
+  
+    /* Adding a semi-transparent overlay to reduce image opacity */
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    //   background: rgba(237, 235, 235, 0.331); /* Light dark overlay to reduce image opacity */
+      z-index: 1; /* Make sure it is behind the content */
+    }
+    
+    .background-content {
+      position: relative;
+      top: 35%;
+      left: 50%; /* Center horizontally */
+      transform: translate(-50%, -50%); /* Center vertically */
+      text-align: center; /* Center text horizontally */
+      padding: 1rem;
+      border-radius: 8px; /* Rounded corners for the background content */
+      max-width: calc(100% - 2rem); /* Ensure it doesn’t exceed container width */
+      box-sizing: border-box; /* Include padding in the element's total width and height */
+      z-index: 2; /* Ensure it is on top of the overlay */
+      
+      h1 {
+        font-size: 2.5rem; /* Font size for the main title */
+        margin: 0 0 0.5rem;
+        color: #000; /* Set text color to black */
+      }
+  
+      p {
+        font-size: 1.2rem; /* Font size for the subtitle */
+        color: #000; /* Set text color to black */
+      }
+    }
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    padding: 2rem;
+    // background-color: #f4f4f4; /* Light grey background for contrast with the image section */
+    text-align: center;
+  
+    h2 {
+      font-size: 2rem; /* Font size for the hero title */
+      margin-bottom: 1rem;
+    }
+  
+    p {
+      font-size: 1.1rem; /* Font size for the hero text */
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  }
+  
+  /* Responsive Adjustments for Smaller Screens */
+  @media (max-width: 768px) {
+    .background-image-section {
+      height: 200px; /* Reduce height on smaller screens */
+      
+      /* Adjust overlay for smaller screens */
+      &::before {
+        background: rgba(0, 0, 0, 0.4); /* Slightly darker overlay */
+      }
+    }
+    
+    .background-content {
+      left: 50%; /* Center horizontally */
+      max-width: calc(100% - 1rem); /* Adjust width to fit smaller screens */
+      padding: 0.5rem; /* Reduce padding on smaller screens */
+      
+      h1 {
+        font-size: 2rem; /* Adjust font size for smaller screens */
+      }
+    
+      p { 
+        font-size: 1rem; /* Adjust font size for smaller screens */
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .background-content {
+      padding: 0.25rem; /* Further reduce padding on very small screens */
+      
+      h1 {
+        font-size: 1.5rem; /* Further adjust font size for very small screens */
+      }
+    
+      p { 
+        font-size: 0.9rem; /* Further adjust font size for very small screens */
+      }
+    }
+  }
+  
+
+  /* styles.scss */
+
+/* Form Container */
+.form-container {
+  width: 100%; /* Full width of the screen */
+  max-width: 1200px; /* Max width for large screens */
+  margin: 2rem auto; /* Center form with margin */
+  padding: 1rem;
+  background-color: #fff; /* Background color for the form */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle 3D effect */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #333; /* Dark text color for readability */
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem; /* Reduced margin for labels */
+  font-weight: bold;
+  color: #555; /* Slightly lighter text color for labels */
+}
+
+input, textarea {
+  width: 100%; /* Full width input and textarea */
+  padding: 0.75rem; /* Increased padding for inputs */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box; /* Include padding in width calculation */
+  font-size: 1rem; /* Font size for form elements */
+  color: #333; /* Text color inside input and textarea */
+}
+
+textarea {
+  min-height: 100px; /* Minimum height for textarea */
+  resize: vertical; /* Allow vertical resize only */
+}
+
+/* Error Message */
+.error-message {
+  color: #d9534f; /* Red color for error messages */
+  font-size: 0.875rem; /* Slightly smaller font size for error messages */
+  margin-top: 0.25rem;
+}
+
+/* Submit Button */
+button {
+  display: block; /* Block level button to center it */
+  margin: 2rem auto 0; /* Center button and add top margin */
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff; /* Primary button color */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+
+  &:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+
+  &:active {
+    transform: scale(0.98); /* Button press effect */
+  }
+
+  &:disabled {
+    background-color: #ddd; /* Disabled button color */
+    cursor: not-allowed;
+  }
+}
+
+/* Responsive Adjustments for Smaller Screens */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 1rem; /* Reduce padding on smaller screens */
+  }
+
+  .form-group {
+    margin-bottom: 0.75rem; /* Reduce bottom margin for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    width: 100%; /* Full width on very small screens */
+  }
+
+  .form-group {
+    margin-bottom: 0.5rem; /* Further reduce bottom margin */
+  }
+
+  input, textarea {
+    font-size: 0.875rem; /* Adjust font size for very small screens */
+  }
+}
+
+
+/* styles.scss */
+
+/* Question Container */
+.question-container {
+  background-color: #f9f9f9; /* Light background for contrast */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  margin-bottom: 1.5rem; /* Space between questions */
+  padding: 1rem;
+  position: relative;
+}
+
+/* Question Header */
+.question-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+/* User Icon */
+.user-icon {
+  width: 40px; /* Fixed width for user icon */
+  height: 40px; /* Fixed height for user icon */
+  border-radius: 50%; /* Circular user icon */
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+/* User Icon Image */
+.user-icon img {
+  width: 100%;
+  height: auto;
+}
+
+/* Question Details */
+.question-details {
+  flex: 1;
+}
+
+/* Question Meta */
+.question-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+/* Question Name */
+.question-name {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Question Date */
+.question-date {
+  font-size: 0.875rem;
+  color: #888;
+}
+
+/* Question Text */
+.question-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Answers Container */
+.answers-container {
+  background-color: #f0f0f0; /* Slightly off-white background */
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Answer */
+.answer {
+  margin-bottom: 1rem;
+}
+
+/* Answer Text */
+.answer-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Answer Date */
+.answer-date {
+  font-size: 0.875rem;
+  color: #888;
+}
+
+/* View More Button Container */
+.view-more-container {
+  text-align: center; /* Center the button */
+  margin-top: 1rem; /* Space above the button */
+}
+
+/* View More Button */
+.view-more-container button {
+  background-color: #007bff; /* Primary button color */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.view-more-container button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.view-more-container button:disabled {
+  background-color: #ddd; /* Disabled button color */
+  cursor: not-allowed;
+}
+
+/* Answer Form Container */
+.answer-form-container {
+  border-top: 1px solid #ddd;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+/* Form Group */
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Textarea */
+textarea {
+  width: calc(100% - 2rem); /* Adjust width considering padding */
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 0.5rem;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  justify-content: space-between; /* Space between input and button */
+}
+
+/* Send Button */
+.form-actions button {
+  background-color: #007bff; /* Primary button color */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.form-actions button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+// .form-actions button:disabled {
+//   background-color: #0056b3; /* Disabled button color */
+//   cursor: not-allowed;
+// }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .question-container {
+    padding: 0.5rem; /* Reduce padding */
+  }
+
+  .user-icon {
+    width: 30px; /* Smaller user icon */
+    height: 30px; /* Smaller user icon */
+  }
+
+  .question-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .question-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  textarea {
+    width: 100%; /* Full width on small screens */
+    margin-bottom: 0.25rem; /* Reduce margin */
+  }
+
+  .form-actions button {
+    width: 100%; /* Full width button on small screens */
+    margin-top: 0.5rem; /* Space between textarea and button */
+  }
+}

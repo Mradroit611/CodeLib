@@ -1,0 +1,40 @@
+// view-snippet.component.scss
+
+// Container for the snippet
+div {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f5f5f5; // Light gray background for the container
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+  
+    // Styling the title
+    h3 {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333333; // Dark gray color for the title text
+      margin-bottom: 15px;
+      border-bottom: 2px solid #dddddd; // Light gray underline
+      padding-bottom: 5px;
+    }
+  
+    // Styling the code block
+    pre {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 16px;
+      color: #333333; // Dark gray color for code text
+      background-color: #eeeeee; // Light gray background for code block
+      padding: 15px;
+      border-radius: 4px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+  
+      // Optional: styling for inline code
+      code {
+        color: #666666; // Slightly lighter gray for inline code
+      }
+    }
+  }
+  

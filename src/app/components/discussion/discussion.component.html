@@ -1,0 +1,75 @@
+<section class="background-image-section">
+  <div class="background-content">
+    <h1>Got Coding Questions?</h1>
+    <p>Share and Get Answers!</p>
+  </div>
+</section>
+
+<form class="form-container" [formGroup]="snippetForm" (ngSubmit)="save()">
+  <h2>Share your Question</h2>
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input id="name" type="text" placeholder="Enter your name" formControlName="name">
+    <div class="error-message" *ngIf="name.invalid && (name.dirty || name.touched)">Name is required</div>
+  </div>
+
+  <div class="form-group">
+    <label for="question">Question</label>
+    <textarea id="question" placeholder="Write your question" formControlName="question"></textarea>
+    <div class="error-message" *ngIf="question.invalid && (question.dirty || question.touched)">
+      Question is required.
+    </div>
+  </div>
+
+  <!-- <div class="form-group">
+    <label for="code">Code</label>
+    <textarea id="code" placeholder="Write your code here" formControlName="code"></textarea>
+    <div class="error-message" *ngIf="code.invalid && (code.dirty || code.touched)">Code is required</div>
+  </div> -->
+
+  <button type="submit" [disabled]="snippetForm.invalid">Share</button>
+</form>
+
+<section *ngIf="questions.length > 0">
+  <h2 class="section-heading">User's Questions</h2>
+
+  <div *ngFor="let question of questions" class="question-container">
+    <div class="question-header">
+      <div class="user-icon">
+        <img src="ss.png" alt="User Icon" class="user-icon"/>
+      </div>
+      <div class="question-details">
+        <div class="question-meta">
+          <span class="question-name">{{ question.name }}</span>
+          <span class="question-date">{{ question.createdAt | date:'short' }}</span>
+        </div>
+        <div class="question-text">{{ question.question }}</div>
+      </div>
+    </div>
+    <div class="answers-container">
+      <div *ngFor="let answer of getVisibleAnswers(question)" class="answer">
+        <div class="answer-text">{{ answer.answer }}</div>
+        <div class="answer-date">{{ answer.answeredAt | date:'short' }}</div>
+      </div>
+      <div *ngIf="shouldShowMoreButton(question)" class="view-more-container">
+        <button (click)="toggleViewMore(question)">
+          {{ getShowMoreButtonText(question) }}
+        </button>
+      </div>
+      <div class="answer-form-container">
+        <form [formGroup]="answerForm" (ngSubmit)="addAnswer(question.id!)">
+          <div class="form-group">
+            <textarea id="answer" placeholder="Write your answer" formControlName="answer"></textarea>
+            <!-- <div class="error-message" *ngIf="answerForm.get('answer')?.invalid && (answerForm.get('answer')?.dirty || answerForm.get('answer')?.touched)">
+              Answer is required.
+            </div> -->
+          </div>
+          <div class="form-actions">
+            <button type="submit" [disabled]="answerForm.invalid">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
