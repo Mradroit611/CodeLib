@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 // import { initializeApp } from 'firebase/app';
-import { doc, getDoc, getDocs, getFirestore } from 'firebase/firestore';
+import { doc, getDoc, getDocs, getFirestore, Timestamp } from 'firebase/firestore';
 import { collection, addDoc } from 'firebase/firestore';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
@@ -19,6 +19,7 @@ export class DbService {
       const docRef = await addDoc(collection(this.db, 'snippets'), {
         ...snippet,
         by: this.authService.getUserId(),
+        createdAt: Timestamp.fromDate(new Date()),
       });
       console.log('Document written with ID: ', docRef.id);
       this.router.navigate(['/']);
@@ -31,9 +32,16 @@ export class DbService {
     let result: any[] = [];
     const querySnapshot = await getDocs(collection(this.db, 'snippets'));
     querySnapshot.forEach((doc) => {
+      const data = doc.data();
       console.log(`${doc.id} => ${doc.data()}`);
-      result.push({ id: doc.id, ...doc.data() });
+      const createdAt = data['createdAt'] ? data['createdAt'].toDate() : new Date();
+      result.push({
+        id: doc.id,
+        ...data,
+        createdAt,
+      });
     });
+
     return result;
   }
 

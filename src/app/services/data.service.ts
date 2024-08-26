@@ -19,6 +19,7 @@ export class DataService {
       const docRef = await addDoc(collection(this.db, 'questions'), {
         ...question,
         by: this.authService.getUserId(),
+        createdAt: Timestamp.fromDate(new Date()),
         answers: [] // Initialize with an empty array for answers
       });
       console.log('Document written with ID: ', docRef.id);
@@ -33,6 +34,8 @@ export class DataService {
     const querySnapshot = await getDocs(collection(this.db, 'questions'));
     querySnapshot.forEach((doc) => {
       const data = doc.data();
+      // Convert Firestore Timestamp to JavaScript Date
+      const createdAt = data['createdAt'] ? data['createdAt'].toDate() : new Date();
       result.push({
         id: doc.id,
         name: data['name'] || '',
