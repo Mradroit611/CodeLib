@@ -2,82 +2,245 @@
 
 /* Background Image Section */
 .background-image-section {
-    position: relative;
-    height: 300px; /* Default height for larger screens */
-    background: url('back_img.png') no-repeat center center;
-    background-size: cover;
-    color: #fff; /* Text color for contrast */
-    
-    .background-content {
-      position: absolute;
-      top: 50%;
-      left: 1rem; /* Align to the left with some padding */
-      transform: translateY(-50%); /* Center vertically */
-      text-align: left; /* Align text to the left */
-      padding: 1rem;
-      border-radius: 8px; /* Rounded corners for the background content */
-      max-width: calc(100% - 2rem); /* Ensure it doesn’t exceed container width */
-      box-sizing: border-box; /* Include padding in the element's total width and height */
-      
-      h1 {
-        font-size: 2.5rem; /* Font size for the main title */
-        margin: 0 0 0.5rem;
-      }
-  
-      p {
-        font-size: 1.2rem; /* Font size for the subtitle */
-      }
+  position: relative;
+  height: 300px; /* Default height for larger screens */
+  background: url('back_img.png') no-repeat center center;
+  background-size: cover;
+  color: #fff; /* Text color for contrast */
+
+  .background-content {
+    position: absolute;
+    top: 50%;
+    left: 4rem; /* Align to the left with some padding */
+    transform: translateY(-50%); /* Center vertically */
+    text-align: left; /* Align text to the left */
+    padding: 1rem;
+    border-radius: 8px; /* Rounded corners for the background content */
+    max-width: calc(100% - 2rem); /* Ensure it doesn’t exceed container width */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+
+    h1 {
+      font-size: 2.5rem; /* Font size for the main title */
+      margin: 0 0 0.5rem;
     }
-  }
-  
-  /* Hero Section */
-  .hero-section {
-    padding: 2rem;
-    background-color: #f4f4f4; /* Light grey background for contrast with the image section */
-    text-align: center;
-  
-    h2 {
-      font-size: 2rem; /* Font size for the hero title */
-      margin-bottom: 1rem;
-    }
-  
+
     p {
-      font-size: 1.1rem; /* Font size for the hero text */
-      max-width: 800px;
-      margin: 0 auto;
+      font-size: 1.2rem; /* Font size for the subtitle */
     }
   }
 
-  /* Responsive Adjustments for Smaller Screens */
   @media (max-width: 768px) {
-    .background-image-section {
-      height: 200px; /* Reduce height on smaller screens */
-      
-      /* Adding a dark overlay for better text visibility on small screens */
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.4); /* Dark overlay with some transparency */
-        z-index: 1; /* Make sure it is behind the content */
-      }
+    height: 200px; /* Reduce height on smaller screens */
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4); /* Dark overlay with some transparency */
+      z-index: 1; /* Make sure it is behind the content */
     }
-    
+
     .background-content {
       left: 0.5rem; /* Adjust left alignment for smaller screens */
       max-width: calc(100% - 1rem); /* Adjust width to fit smaller screens */
       padding: 0.5rem; /* Reduce padding on smaller screens */
       z-index: 2; /* Ensure it is on top of the overlay */
-    }
-    
-    .background-content h1 {
-      font-size: 2rem; /* Adjust font size for smaller screens */
-    }
-  
-    .background-content p { 
-      font-size: 1rem; /* Adjust font size for smaller screens */
+
+      h1 {
+        font-size: 2rem; /* Adjust font size for smaller screens */
+      }
+
+      p {
+        font-size: 1rem; /* Adjust font size for smaller screens */
+      }
     }
   }
+}
+
+/* styles.scss */
+
+/* Home Section */
+.home {
+  a{
+    // list-style: none;
+    text-decoration: none;
+  }
+  .home-header {
+    text-align: center;
+    margin: 40px 0;
+
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 350px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      text-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column; /* Ensure column direction to stretch content */
+
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-image {
+        width: 100%;
+        height: 200px; /* Fixed height for the image */
+        overflow: hidden;
+        position: relative;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover; /* Ensures the image covers the area */
+          transition: opacity 0.3s;
+        }
+      }
+
+      .card-content {
+        padding: 20px;
+        background: #f9f9f9; /* Slightly different background for content area */
+        flex-grow: 1; /* Ensure content area grows to fill available space */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        h2 {
+          font-size: 1.6rem;
+          color: #333;
+          margin-bottom: 0.5rem;
+        }
+
+        p {
+          font-size: 1rem;
+          color: #666;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cards-container {
+      .card {
+        max-width: 100%; /* Full width on smaller screens */
+        width: calc(100% - 20px); /* Ensure proper spacing */
+        flex-direction: column; /* Stack image and content */
+      }
+
+      .card-image {
+        height: 150px; /* Adjust image height for smaller screens */
+      }
+
+      .card-content {
+        padding: 15px;
+      }
+    }
+  }
+  
+}
+
+
+
+.hero {
+  // Basic styling for the hero section
+  display: flex;
+  justify-content: center;  // Center the content horizontally
+  align-items: center;      // Center the content vertically
+  padding: 20px;
+  margin-top: 30px;
+  background-color: #f5f5f5; // Light background color for the hero section
+}
+
+.hero-content {
+  display: flex;
+  justify-content: space-between;  // Space out the content and image
+  align-items: center;
+  max-width: 1200px;  // Limit the width of the hero content
+  width: 100%;
+}
+
+.text-content {
+  flex: 1;  // Allow text content to take up available space
+  padding: 20px;
+  max-width: 50%;  // Ensure text content does not exceed half of the hero content width
+}
+
+.text-content h1 {
+  font-size: 2em;  // Set font size for heading
+  margin-bottom: 10px;
+}
+
+.text-content p {
+  font-size: 1em;  // Set font size for paragraph
+  line-height: 1.5;  // Improve readability
+}
+
+.image-content {
+  flex: 1;  // Allow image content to take up available space
+  display: flex;
+  justify-content: center;  // Center the image horizontally within its container
+  align-items: center;      // Center the image vertically within its container
+}
+
+.image-content img {
+  max-width: 100%;  // Ensure image does not overflow its container
+  height: auto;     // Maintain aspect ratio of the image
+  border-radius: 10px;
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;  // Stack content and image vertically on smaller screens
+    text-align: center;  // Center-align text for smaller screens
+  }
+
+  .text-content, .image-content {
+    max-width: 100%;  // Allow content and image to take full width of their container
+  }
+
+  .text-content {
+    padding: 10px;  // Reduce padding for smaller screens
+  }
+  
+  .image-content img {
+    max-width: 90%;  // Limit image width to ensure it fits well on smaller screens
+  }
+}

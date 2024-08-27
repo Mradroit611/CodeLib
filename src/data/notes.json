@@ -1,0 +1,59 @@
+{
+  "JavaScript": {
+    "Introduction": {
+      "description": "JavaScript is a versatile programming language primarily used for creating interactive web pages."
+    },
+    "Syntax": {
+      "description": "JavaScript syntax is the set of rules that define a correctly structured JavaScript program."
+    }
+  },
+  "TypeScript": {
+    "Introduction": {
+      "description": "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript."
+    },
+    "Features": {
+      "description": "TypeScript adds optional static typing and other features to JavaScript."
+    }
+  },
+  "NodeJs": {
+    "What is Node.js": {
+      "description": "Node.js is a runtime environment that allows you to run JavaScript code on the server side. It’s built on Chrome’s V8 JavaScript engine and helps developers build fast and scalable network applications. Essentially, it lets you use JavaScript to write server-side code, not just code that runs in a web browser."
+    },
+    "Event-Driven Programming": {
+      "description": "Event-driven programming is a style of programming where the flow of the program is determined by events, such as user actions (clicks, keystrokes) or messages from other programs. In this approach, the program listens for and responds to these events, often using event handlers or callbacks to execute specific code when an event occurs."
+    },
+    "Node.js Architecture": {
+      "description": "Node.js architecture is designed around a single-threaded, non-blocking, event-driven model. It uses a single main thread to handle multiple connections concurrently. When an operation (like I/O) is requested, Node.js offloads it to the system and continues processing other tasks. Once the operation is complete, a callback function is triggered to handle the result. This approach enables high scalability and efficiency, especially for I/O-heavy applications."
+    },
+    "Asynchronous and Synchronous Programming": {
+      "description": "Asynchronous programming lets tasks run at the same time without waiting for others to finish. It’s good for things like loading files or getting data from the web because it keeps your program running smoothly. <br> Synchronous programming, on the other hand, makes tasks run one after another. It waits for each task to finish before moving to the next. This can slow things down if a task takes a while, like reading a large file or waiting for a network response."
+    },
+    "Libuv Library ": {
+      "description": "It is used to handle asynchronous operations in a non-blocking way. For example, when there is a request to read a file or make a network connection, libuv manages these tasks the background, allowing our application to keep running and responding to other requests waiting for the revious request to finish. Its features include: 1) Event Loop 2) Thread Pool"
+    },
+    ".npmrc file": {
+      "description": "We use this file to configures settings for npm like in ts we were using tsconfig.json file to configure the setting of typescript to defining the paths or config etc. so same we use .npmrc file for customizing registry URLs and config proxy setting."
+    },
+    "V8 Engine": {
+      "description": "It is like a javascript compiler. It compiles JavaScript code into machine code so that it can be executed directly by the computer's processor."
+    },
+    "Server-Side Rendering": {
+      "description": "It refers to the process of generating HTML content on the server rather than in the client's browser, which can improve load times and SEO for web applications"
+    },
+    "Event Loop ": {
+      "description": "Event loop pick up the request from the Event queue on FIFO base and then it checks that the request is non-blocking (asynchronous) or blocking (synchronous) operation if it's a non-blocking then it will process the request but if it is blocking operation request then it will pass to the thread pool"
+    },
+    "Streams": {
+      "description": "streams are a way to handle data that flows continuously. Instead of waiting for all the data to be available, streams let you process it piece by piece."
+    },
+    "Representational State Transfer (REST)": {
+      "description": "It is an architectural style for designing networked applications that use standard HTTP methods (like GET, POST, PUT, DELETE) and a stateless communication protocol to interact with resources represented as URLs."
+    },
+    "Express": {
+      "description": "It is a web framework for Node.js that simplifies building web applications and APIs. It provides a set of tools to handle HTTP requests, routing, and middleware, making it easier to develop server-side applications."
+    },
+    "Middleware": {
+      "description": "Middleware acts as an interface between the client and server to manage and handle HTTP requests and responses. "
+    }
+  }
+}

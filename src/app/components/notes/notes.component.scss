@@ -1,0 +1,184 @@
+// Main container styling
+.notes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: #f9f9f9;
+  min-height: 100vh;
+
+  h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center; // Center heading text
+    word-wrap: break-word; // Ensure long words break to avoid overflow
+  }
+
+  .notes-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    overflow: hidden;
+
+    .headings-list {
+      flex: 1;
+      padding: 20px;
+      border-right: 1px solid #ddd;
+      background: #f4f4f4;
+      overflow-y: auto; // Allow scrolling if the list is long
+
+      h2 {
+        font-size: 1.8rem;
+        color: #444;
+        margin-bottom: 15px;
+        word-wrap: break-word; // Ensure headings break if they are too long
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin-bottom: 10px;
+          padding: 10px;
+          border: 1px solid #ddd; // Border around each heading
+          border-radius: 4px; // Rounded corners for the border
+          background: #fff; // Default background for list items
+          cursor: pointer; // Pointer cursor on hover
+          overflow: hidden; // Hide overflow if content is too large
+
+          &.selected {
+            background: #007bff; // Background color for selected heading
+            color: #fff; // Text color for selected heading
+          }
+
+          a {
+            text-decoration: none;
+            color: inherit; // Inherit text color from the parent
+            font-size: 1.2rem;
+            display: block; // Ensure link covers the entire list item
+            width: 100%; // Full width of the list item
+            height: 100%; // Full height of the list item
+            line-height: 1.4; // Improve text alignment
+            transition: background 0.3s ease, color 0.3s ease;
+
+            &:hover {
+              background: #0056b3; // Background color on hover
+              color: #fff; // Text color on hover
+              border-radius: 4px; // Rounded corners on hover
+            }
+          }
+        }
+      }
+    }
+
+    .heading-description {
+      flex: 2;
+      padding: 20px;
+      background: #fff; // White background for the description
+
+      h2 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 15px;
+        word-wrap: break-word; // Ensure long headings break to avoid overflow
+      }
+
+      p {
+        font-size: 1.2rem;
+        color: #666;
+        line-height: 1.6;
+        word-wrap: break-word; // Ensure long paragraphs break to avoid overflow
+      }
+    }
+  }
+}
+
+// Responsive design for tablets and smaller screens
+@media (max-width: 1024px) {
+  .notes-content {
+    flex-direction: column;
+
+    .headings-list {
+      border-right: none;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 20px;
+    }
+
+    .heading-description {
+      padding: 20px 10px;
+    }
+  }
+}
+
+// Responsive design for mobile devices
+@media (max-width: 768px) {
+  .notes-container {
+    padding: 10px;
+  }
+
+  .notes-content {
+    padding: 5px;
+
+    .headings-list {
+      padding: 10px;
+    }
+
+    .heading-description {
+      padding: 10px;
+    }
+
+    ul {
+      li {
+        font-size: 1rem; // Adjust font size of headings for mobile
+      }
+    }
+
+    .heading-description h2 {
+      font-size: 1.6rem; // Adjust heading size in description for mobile
+    }
+
+    .heading-description p {
+      font-size: 1rem; // Adjust paragraph text size for mobile
+    }
+  }
+}
+
+// Responsive design for very small devices
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .notes-content {
+    padding: 5px;
+
+    .headings-list {
+      padding: 5px;
+    }
+
+    .heading-description {
+      padding: 5px;
+    }
+
+    ul {
+      li {
+        font-size: 0.9rem; // Further adjust font size of headings for very small screens
+      }
+    }
+
+    .heading-description h2 {
+      font-size: 1.4rem; // Further adjust heading size in description for very small screens
+    }
+
+    .heading-description p {
+      font-size: 0.9rem; // Further adjust paragraph text size for very small screens
+    }
+  }
+}

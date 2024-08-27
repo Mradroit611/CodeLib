@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ValidatorFn, AbstractControl, ValidationErrors, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DataService } from '../../services/data.service';
@@ -12,7 +12,12 @@ import { Router } from '@angular/router';
   templateUrl: './discussion.component.html',
   styleUrls: ['./discussion.component.scss']
 })
-export class DiscussionComponent implements OnInit {
+export class DiscussionComponent implements OnInit, AfterViewInit {
+  // Pagination variables
+  currentPage: number = 1;
+  questionsPerPage: number = 3;
+  totalQuestions: number = 0;
+
   // Define the custom validator function
   private wordLimitValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const value = control.value as string;
@@ -58,10 +63,26 @@ export class DiscussionComponent implements OnInit {
   async fetchQuestions() {
     try {
       this.questions = await this.dataService.getAllSnippet();
-      console.log('Fetched questions:', this.questions); // Add this line to debug
+      this.questions.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+      this.totalQuestions = this.questions.length;
+      this.setPage(this.currentPage); // Initialize with the first page
     } catch (error) {
       console.error('Error fetching questions:', error);
     }
+  }
+
+  setPage(page: number) {
+    this.currentPage = page;
+  }
+
+  get paginatedQuestions() {
+    const startIndex = (this.currentPage - 1) * this.questionsPerPage;
+    const endIndex = startIndex + this.questionsPerPage;
+    return this.questions.slice(startIndex, endIndex);
+  }
+
+  get totalPages() {
+    return Math.ceil(this.totalQuestions / this.questionsPerPage);
   }
 
   async save() {
@@ -77,6 +98,8 @@ export class DiscussionComponent implements OnInit {
       await this.dataService.createSnippet(questionData);
       this.snippetForm.reset();
       await this.fetchQuestions(); // Refresh the questions list
+      // Redirect to /discussion page after saving the form
+      this.router.navigate(['/discussion']);
     } else {
       this.snippetForm.markAllAsTouched();
     }
@@ -106,6 +129,27 @@ export class DiscussionComponent implements OnInit {
       await this.fetchQuestions(); // Refresh answers
     } else {
       this.answerForm.markAllAsTouched();
+    }
+  }
+ 
+  
+  ngAfterViewInit() {
+    this.setupIntersectionObserver();
+  }
+
+  private setupIntersectionObserver() {
+    const heroSection = document.querySelector('.hero');
+
+    if (heroSection) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            heroSection.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(heroSection);
     }
   }
 }

@@ -9,7 +9,7 @@
     font-weight: 600;
     margin-bottom: 1rem;
     color: #333;
-    text-align: center;
+    text-align: center; 
   }
 
   .no-data {
@@ -281,3 +281,51 @@ body.modal-open {
 .community-form-container button {
   margin-top: 1rem; /* Add space above the submit button */
 }
+
+
+/* Pagination container styles */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  gap: 1rem;
+}
+
+/* Style for pagination buttons */
+.pagination-controls button {
+  background-color: #007bff; /* Primary button color */
+  color: #fff; /* Text color */
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Button hover and active states */
+.pagination-controls button:hover {
+  background-color: #0056b3; /* Darker shade for hover */
+}
+
+.pagination-controls button:disabled {
+  background-color: #6c757d; /* Disabled button color */
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  font-size: 1rem;
+  color: #333; /* Text color for page numbers */
+}
+
+/* Responsive adjustments */
+// @media (max-width: 768px) {
+//   .pagination-controls {
+//     flex-direction: column;
+//     gap: 0.5rem;
+//   }
+// }
+
+
+

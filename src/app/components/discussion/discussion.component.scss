@@ -1,122 +1,101 @@
 /* styles.scss */
 
+/* Keyframes for Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade-In Animation Class */
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
 /* Background Image Section */
 .background-image-section {
+  position: relative;
+  height: 300px; /* Default height for larger screens */
+  background: url('dis_back.jpg') no-repeat center center;
+  background-size: cover;
+  color: #000; /* Text color for contrast */
+  overflow: hidden; /* Ensure no overflow from pseudo-element */
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background: rgba(237, 235, 235, 0.331); /* Light dark overlay to reduce image opacity */
+    z-index: 1; /* Make sure it is behind the content */
+  }
+  
+  .background-content {
     position: relative;
-    height: 300px; /* Default height for larger screens */
-    background: url('dis_back.jpg') no-repeat center center;
-    background-size: cover;
-    color: #000; /* Text color for contrast */
-    overflow: hidden; /* Ensure no overflow from pseudo-element */
-  
-    /* Adding a semi-transparent overlay to reduce image opacity */
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    //   background: rgba(237, 235, 235, 0.331); /* Light dark overlay to reduce image opacity */
-      z-index: 1; /* Make sure it is behind the content */
-    }
+    top: 35%;
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center vertically */
+    text-align: center; /* Center text horizontally */
+    padding: 1rem;
+    border-radius: 8px; /* Rounded corners for the background content */
+    max-width: calc(100% - 2rem); /* Ensure it doesn’t exceed container width */
+    box-sizing: border-box; /* Include padding in the element's total width and height */
+    z-index: 2; /* Ensure it is on top of the overlay */
     
-    .background-content {
-      position: relative;
-      top: 35%;
-      left: 50%; /* Center horizontally */
-      transform: translate(-50%, -50%); /* Center vertically */
-      text-align: center; /* Center text horizontally */
-      padding: 1rem;
-      border-radius: 8px; /* Rounded corners for the background content */
-      max-width: calc(100% - 2rem); /* Ensure it doesn’t exceed container width */
-      box-sizing: border-box; /* Include padding in the element's total width and height */
-      z-index: 2; /* Ensure it is on top of the overlay */
-      
-      h1 {
-        font-size: 2.5rem; /* Font size for the main title */
-        margin: 0 0 0.5rem;
-        color: #000; /* Set text color to black */
-      }
-  
-      p {
-        font-size: 1.2rem; /* Font size for the subtitle */
-        color: #000; /* Set text color to black */
-      }
+    h1 {
+      font-size: 2.5rem; /* Font size for the main title */
+      margin: 0 0 0.5rem;
+      color: #000; /* Set text color to black */
     }
-  }
-  
-  /* Hero Section */
-  .hero-section {
-    padding: 2rem;
-    // background-color: #f4f4f4; /* Light grey background for contrast with the image section */
-    text-align: center;
-  
-    h2 {
-      font-size: 2rem; /* Font size for the hero title */
-      margin-bottom: 1rem;
-    }
-  
-    p {
-      font-size: 1.1rem; /* Font size for the hero text */
-      max-width: 800px;
-      margin: 0 auto;
-    }
-  }
-  
-  /* Responsive Adjustments for Smaller Screens */
-  @media (max-width: 768px) {
-    .background-image-section {
-      height: 200px; /* Reduce height on smaller screens */
-      
-      /* Adjust overlay for smaller screens */
-      &::before {
-        background: rgba(0, 0, 0, 0.4); /* Slightly darker overlay */
-      }
-    }
-    
-    .background-content {
-      left: 50%; /* Center horizontally */
-      max-width: calc(100% - 1rem); /* Adjust width to fit smaller screens */
-      padding: 0.5rem; /* Reduce padding on smaller screens */
-      
-      h1 {
-        font-size: 2rem; /* Adjust font size for smaller screens */
-      }
-    
-      p { 
-        font-size: 1rem; /* Adjust font size for smaller screens */
-      }
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .background-content {
-      padding: 0.25rem; /* Further reduce padding on very small screens */
-      
-      h1 {
-        font-size: 1.5rem; /* Further adjust font size for very small screens */
-      }
-    
-      p { 
-        font-size: 0.9rem; /* Further adjust font size for very small screens */
-      }
-    }
-  }
-  
 
-  /* styles.scss */
+    p {
+      font-size: 1.2rem; /* Font size for the subtitle */
+      color: #000; /* Set text color to black */
+    }
+  }
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 2rem;
+  text-align: center;
+
+  h2 {
+    font-size: 2rem; /* Font size for the hero title */
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.1rem; /* Font size for the hero text */
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
 
 /* Form Container */
 .form-container {
-  width: 100%; /* Full width of the screen */
+  // width: 100%; /* Full width of the screen */
   max-width: 1200px; /* Max width for large screens */
-  margin: 2rem auto; /* Center form with margin */
+  margin: 2rem ; /* Center form with margin */
   padding: 1rem;
   background-color: #fff; /* Background color for the form */
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle 3D effect */
   box-sizing: border-box; /* Include padding in width calculation */
+
+  @media (max-width: 768px) {
+    margin: 2rem 1rem; /* Add side margins on smaller screens */
+    padding: 1rem; /* Reduce padding on smaller screens */
+  }
+
+  @media (max-width: 480px) {
+    margin: 2rem 0.5rem; /* Further reduce side margins on very small screens */
+  }
 }
 
 h2 {
@@ -162,7 +141,6 @@ textarea {
 /* Submit Button */
 button {
   display: block; /* Block level button to center it */
-  margin: 2rem auto 0; /* Center button and add top margin */
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   color: #fff;
@@ -188,6 +166,25 @@ button {
 
 /* Responsive Adjustments for Smaller Screens */
 @media (max-width: 768px) {
+  .background-image-section {
+    height: 200px; /* Reduce height on smaller screens *
+  }
+  
+  .background-content {
+    left: 50%; /* Center horizontally */
+    max-width: calc(100% - 1rem); /* Adjust width to fit smaller screens */
+    padding: 0.5rem; /* Reduce padding on smaller screens */
+    margin-top: 20px;
+    
+    h1 {
+      font-size: 2rem; /* Adjust font size for smaller screens */
+    }
+  
+    p { 
+      font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+  }
+
   .form-container {
     padding: 1rem; /* Reduce padding on smaller screens */
   }
@@ -198,9 +195,21 @@ button {
 }
 
 @media (max-width: 480px) {
-  .form-container {
-    width: 100%; /* Full width on very small screens */
+  .background-content {
+    padding: 0.25rem; /* Further reduce padding on very small screens */
+    
+    h1 {
+      font-size: 1.5rem; /* Further adjust font size for very small screens */
+    }
+  
+    p { 
+      font-size: 0.9rem; /* Further adjust font size for very small screens */
+    }
   }
+
+  // .form-container {
+  //   width: 100%; /* Full width on very small screens */
+  // }
 
   .form-group {
     margin-bottom: 0.5rem; /* Further reduce bottom margin */
@@ -211,17 +220,24 @@ button {
   }
 }
 
-
-/* styles.scss */
-
 /* Question Container */
 .question-container {
-  background-color: #f9f9f9; /* Light background for contrast */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  margin-bottom: 1.5rem; /* Space between questions */
+  background-color: #ffffff; /* Clean white background for a modern look */
+  border-radius: 12px; /* More rounded corners for a modern appearance */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Deeper shadow for a floating effect */
+  margin: 1.5rem ; /* Center with top and bottom margin */
   padding: 1rem;
   position: relative;
+  @extend .fade-in; /* Apply fade-in animation */
+  
+  @media (max-width: 768px) {
+    margin: 1.5rem 1rem; /* Add side margins on smaller screens */
+    padding: 0.5rem; /* Reduce padding */
+  }
+
+  @media (max-width: 480px) {
+    margin: 1.5rem 1rem; /* Further reduce side margins on very small screens */
+  }
 }
 
 /* Question Header */
@@ -233,9 +249,9 @@ button {
 
 /* User Icon */
 .user-icon {
-  width: 40px; /* Fixed width for user icon */
-  height: 40px; /* Fixed height for user icon */
-  border-radius: 50%; /* Circular user icon */
+  width: 50px; /* Slightly larger user icon for better visibility */
+  height: 50px; /* Slightly larger user icon for better visibility */
+  border-radius: 50%;
   overflow: hidden;
   margin-right: 1rem;
 }
@@ -278,14 +294,21 @@ button {
 
 /* Answers Container */
 .answers-container {
-  background-color: #f0f0f0; /* Slightly off-white background */
+  background-color: #f8f8f8; /* Slightly off-white background */
   border-radius: 8px;
   padding: 1rem;
+  margin-top: 1rem;
+  position: relative;
+  @extend .fade-in; /* Apply fade-in animation */
 }
 
 /* Answer */
 .answer {
   margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  @extend .fade-in; /* Apply fade-in animation */
 }
 
 /* Answer Text */
@@ -302,8 +325,9 @@ button {
 
 /* View More Button Container */
 .view-more-container {
-  text-align: center; /* Center the button */
-  margin-top: 1rem; /* Space above the button */
+  display: flex;
+  justify-content: flex-start; /* Align to left side of the answers container */
+  margin-top: 1rem;
 }
 
 /* View More Button */
@@ -313,18 +337,18 @@ button {
   border: none;
   border-radius: 4px;
   padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  font-size: 0.75rem; /* Smaller font size for the view more button */
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
-}
 
-.view-more-container button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
-}
+  &:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
 
-.view-more-container button:disabled {
-  background-color: #ddd; /* Disabled button color */
-  cursor: not-allowed;
+  &:disabled {
+    background-color: #ddd; /* Disabled button color */
+    cursor: not-allowed;
+  }
 }
 
 /* Answer Form Container */
@@ -332,28 +356,34 @@ button {
   border-top: 1px solid #ddd;
   padding-top: 1rem;
   margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Form Group */
 .form-group {
   display: flex;
   flex-direction: column;
+  margin-bottom: 0.5rem; /* Reduced margin between form elements */
 }
 
 /* Textarea */
 textarea {
   width: calc(100% - 2rem); /* Adjust width considering padding */
-  padding: 0.5rem;
+  padding: 0.75rem; /* Increased padding for better readability */
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem; /* Reduced margin for better alignment */
+  resize: vertical; /* Allow vertical resize only */
+  @extend .fade-in; /* Apply fade-in animation */
 }
 
 /* Form Actions */
 .form-actions {
   display: flex;
-  justify-content: space-between; /* Space between input and button */
+  align-items: center; /* Align items vertically centered */
+  gap: 0.5rem; /* Space between the input and button */
 }
 
 /* Send Button */
@@ -363,19 +393,20 @@ textarea {
   border: none;
   border-radius: 4px;
   padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  font-size: 0.875rem; /* Adjusted font size */
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
+  @extend .fade-in; /* Apply fade-in animation */
 }
 
 .form-actions button:hover {
   background-color: #0056b3; /* Darker shade on hover */
 }
 
-// .form-actions button:disabled {
-//   background-color: #0056b3; /* Disabled button color */
-//   cursor: not-allowed;
-// }
+.form-actions button:disabled {
+  background-color: #ddd; /* Disabled button color */
+  cursor: not-allowed;
+}
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
@@ -384,8 +415,8 @@ textarea {
   }
 
   .user-icon {
-    width: 30px; /* Smaller user icon */
-    height: 30px; /* Smaller user icon */
+    width: 40px; /* Smaller user icon */
+    height: 40px; /* Smaller user icon */
   }
 
   .question-header {
@@ -412,4 +443,234 @@ textarea {
     width: 100%; /* Full width button on small screens */
     margin-top: 0.5rem; /* Space between textarea and button */
   }
+}
+
+@media (max-width: 480px) {
+  .section-heading {
+    font-size: 1.75rem; /* Further smaller font size on very small screens */
+  }
+
+  // .form-container {
+  //   width: 100%; /* Full width on very small screens */
+  // }
+
+  .form-group {
+    margin-bottom: 0.5rem; /* Further reduce bottom margin */
+  }
+
+  input, textarea {
+    font-size: 0.875rem; /* Adjust font size for very small screens */
+  }
+}
+
+/* User's Questions Heading */
+.section-heading {
+  font-size: 2.5rem; /* Larger font size for prominence */
+  font-weight: bold;
+  color: #333; /* Dark color for readability */
+  text-align: center; /* Center align the heading */
+  margin-bottom: 1.5rem; /* Space below the heading */
+  position: relative;
+  padding-bottom: 0.5rem; /* Add padding for decorative line */
+  
+  &::after {
+    content: "";
+    display: block;
+    width: 80%; /* Width of the decorative line */
+    height: 3px; /* Height of the decorative line */
+    background-color: #333; /* Primary color for the line */
+    margin: 0.5rem auto 0; /* Center and position the line */
+    border-radius: 2px; /* Rounded edges for the line */
+  }
+}
+
+/* Pagination Controls */
+.pagination-controls {
+  margin-bottom: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.pagination-controls button {
+  background-color: #007bff; /* Primary button color */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin: 0 0.5rem;
+
+  &:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+
+  &:disabled {
+    background-color: #ddd; /* Disabled button color */
+    cursor: not-allowed;
+  }
+}
+
+.pagination-controls span {
+  margin: 0 1rem;
+  font-size: 0.875rem;
+  color: #333;
+}
+
+
+
+// Basic Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; // Full viewport height
+  padding: 0 20px;
+  background-color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: row; // Default to row layout
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    gap: 20px;
+    padding: 20px;
+    text-align: center; // Center text content
+    margin: 0 auto; // Center horizontally
+
+    .text-content {
+      flex: 1;
+      padding: 20px;
+      max-width: 500px;
+
+      h1 {
+        font-size: 3rem; // Larger font size for better visibility
+        color: #333;
+        margin-bottom: 15px;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 1.2rem; // Slightly larger font for better readability
+        color: #666;
+        line-height: 1.6; // Improved readability
+      }
+    }
+
+    .image-content {
+      flex: 1;
+      display: flex;
+      justify-content: center; // Center image horizontally within its container
+
+      img {
+        max-width: 100%; // Ensure image scales appropriately
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+
+  // Responsive design adjustments
+  @media (max-width: 992px) {
+    .hero-content {
+      flex-direction: column; // Stack content and image vertically on smaller screens
+      text-align: center; // Center text content on smaller screens
+    }
+
+    .text-content {
+      max-width: 100%; // Full width on smaller screens
+      padding: 10px; // Reduce padding
+    }
+
+    .image-content {
+      margin-top: 20px; // Add margin on top of the image when stacked
+    }
+  }
+
+  @media (max-width: 768px) {
+    .text-content h1 {
+      font-size: 2.5rem; // Adjust font size for smaller screens
+    }
+
+    .text-content p {
+      font-size: 1rem; // Adjust font size for smaller screens
+    }
+
+    .image-content img {
+      max-width: 90%; // Limit image width on smaller screens
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text-content h1 {
+      font-size: 2rem; // Further reduce font size for very small screens
+    }
+
+    .text-content p {
+      font-size: 0.9rem; // Further reduce font size for very small screens
+    }
+  }
+}
+
+
+// Responsive Design
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center; // Center text for smaller screens
+
+    .text-content {
+      max-width: 90%; // Allow more flexibility in width
+      padding: 10px; // Adjust padding for smaller screens
+    }
+
+    .image-content {
+      margin-top: 20px;
+    }
+  }
+}
+
+// Keyframes for animation
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
 }

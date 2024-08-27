@@ -1,0 +1,23 @@
+<div class="notes-container">
+  <h1>{{ topic }}</h1>
+
+  <div class="notes-content">
+    <div class="headings-list">
+      <h2>Headings</h2>
+      <ul>
+        <!-- Use *ngFor to iterate over the keys of notesData -->
+        <li 
+          *ngFor="let heading of getHeadings()"
+          [ngClass]="{ 'selected': selectedHeading === heading }"
+        >
+          <p (click)="selectHeading(heading)">{{ heading }}</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="heading-description" *ngIf="selectedHeading">
+      <h2>{{ selectedHeading }}</h2>
+      <p>{{ headingData.description }}</p>
+    </div>
+  </div>
+</div>

@@ -38,6 +38,10 @@
     display: flex;
     flex-direction: column;
 
+    p{
+      color: red;
+    }
+
     label {
       margin: 0.5rem 0 0.2rem;
     }

@@ -6,10 +6,10 @@
     <form *ngIf="!showResetPassword" (ngSubmit)="login()" #loginForm="ngForm">
       <label for="email">Email:</label>
       <input type="email" placeholder="Enter email" [formControl]="email" name="email">
-      <h5 [hidden]="email.valid || email.untouched">Please enter a valid email address</h5>
+      <p [hidden]="email.valid || email.untouched">Please enter a valid email address</p>
       <label for="password">Password:</label>
       <input type="password" placeholder="Enter password" [formControl]="password" name="password">
-      <h5 [hidden]="password.valid || password.untouched">Password must be at least 6 characters long</h5>
+      <p [hidden]="password.valid || password.untouched">Password must be at least 6 characters long</p>
       <button type="submit" [disabled]="loginForm.invalid">Sign In</button>
     </form>
     
@@ -18,7 +18,7 @@
       <form (ngSubmit)="resetPassword()" #resetPasswordForm="ngForm">
         <label for="resetEmail">Email:</label>
         <input type="email" placeholder="Enter your email" [formControl]="resetEmail" name="resetEmail">
-        <h5 [hidden]="resetEmail.valid || resetEmail.untouched">Please enter a valid email address</h5>
+        <p [hidden]="resetEmail.valid || resetEmail.untouched">Please enter a valid email address</p>
         <button type="submit" [disabled]="resetPasswordForm.invalid">Send Reset Link</button>
       </form>
     <p>Go back to Sign-In page: <a (click)="showSignIn()">Sign In</a></p>

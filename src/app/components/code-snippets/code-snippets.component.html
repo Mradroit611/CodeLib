@@ -13,12 +13,12 @@
 
 <div class="list-container">
   <h2 class="heading">Public Code Snippets</h2>
-  <ng-container *ngIf="items.length === 0; else itemList">
-    <div class="no-data">No data available</div>
+  <ng-container *ngIf="paginatedItems.length === 0; else itemList">
+    <div class="no-data">Please Sign In</div>
   </ng-container>
   <ng-template #itemList>
     <div class="item-list">
-      <div *ngFor="let item of items; trackBy: trackById" class="snippet-card">
+      <div *ngFor="let item of paginatedItems; trackBy: trackById" class="snippet-card">
         <div class="card-header">
           <img src="ss.png" alt="User Icon" class="user-icon"/>
           <div class="user-details">
@@ -35,6 +35,11 @@
         </div>
       </div>
     </div>
+    <div class="pagination-controls">
+      <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+    </div>
   </ng-template>
 </div>
 
@@ -46,7 +51,6 @@
   <button class="close-button" (click)="closeCommunityForm()">×</button>
   <app-community></app-community>
 </div>
-
 
 <!-- Custom Alert -->
 <app-custom-alert [message]="alertMessage" [show]="showAlert"></app-custom-alert>

@@ -55,7 +55,7 @@ export class CommunityComponent {
     if (this.snippetForm.valid) {
       this.loading = true;
       this.errorMessage = null; // Clear previous errors
-      const snippetData: Snippet = {
+      const snippetData: Snippet = { 
         name: this.snippetForm.value.name ?? '',
         title: this.snippetForm.value.title ?? '',
         description: this.snippetForm.value.description ?? '',

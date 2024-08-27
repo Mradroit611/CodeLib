@@ -1,12 +1,42 @@
 <section class="background-image-section">
-    <div class="background-content">
-      <h1>Welcome to CodeLib</h1>
-      <p>Single Platform all Solutions!</p>
+  <div class="background-content">
+    <h1>Welcome to CodeLib</h1>
+    <p>Single Platform all Solutions!</p>
+  </div>
+</section>
+
+<div class="home">
+  <header class="home-header">
+    <h1>Welcome to CodeLib</h1>
+    <p>Explore a curated list of technologies and learn about their features and applications. CodeLib provides a quick overview of popular technologies used in modern development.</p>
+  </header>
+  
+  <section class="cards-container">
+    <div *ngFor="let tech of languages" class="card" >
+      <a [routerLink]="['/notes', tech.topic]" class="card-link">
+      <div class="card-image">
+        <img [src]="tech.image" [alt]="tech.topic">
+      </div>
+      <div class="card-content">
+        <h2>{{ tech.topic }}</h2>
+        <p>{{ tech.description }}</p>
+      </div>
+    </a>
     </div>
   </section>
+</div>
 
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <h2>Discover More</h2>
-    <p>This is the hero section where you can highlight key information or call-to-actions.</p>
-  </section>
+<div class="hero">
+  <div class="hero-content">
+    <div class="text-content">
+      <h1>Expand Your Knowledge and Share Your Insights
+      </h1>
+      <p>Use our notes to explore new programming languages and technologies. Share your code and notes with the community to help others learn and improve. This platform is designed to make understanding programming concepts and technologies easier for you.</p>
+    </div>
+    <div class="image-content">
+      <img src="h1.png" alt="Coding Image">
+    </div>
+  </div>
+</div>
+
+

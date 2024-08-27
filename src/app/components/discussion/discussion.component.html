@@ -31,10 +31,21 @@
   <button type="submit" [disabled]="snippetForm.invalid">Share</button>
 </form>
 
-<section *ngIf="questions.length > 0">
-  <h2 class="section-heading">User's Questions</h2>
+<section class="hero">
+  <div class="hero-content">
+    <div class="text-content">
+      <h1>Share Your coding Questions</h1>
+      <p>Welcome to CodeLib! Here, you can ask any coding-related questions you have. Share your queries with the community and get answers from fellow developers. Not only can you seek help, but you can also contribute by answering questions posed by others. Join our collaborative platform to enhance your learning and help others in their coding journey.</p>
+    </div>
+    <div class="image-content">
+      <img src="dis2.png" alt="Coding Image">
+    </div>
+  </div>
+</section>
 
-  <div *ngFor="let question of questions" class="question-container">
+<section *ngIf="questions.length > 0" class="questions-section">
+  <h2 class="heading">See What Others Are Asking</h2>
+  <div *ngFor="let question of paginatedQuestions" class="question-container">
     <div class="question-header">
       <div class="user-icon">
         <img src="ss.png" alt="User Icon" class="user-icon"/>
@@ -61,9 +72,6 @@
         <form [formGroup]="answerForm" (ngSubmit)="addAnswer(question.id!)">
           <div class="form-group">
             <textarea id="answer" placeholder="Write your answer" formControlName="answer"></textarea>
-            <!-- <div class="error-message" *ngIf="answerForm.get('answer')?.invalid && (answerForm.get('answer')?.dirty || answerForm.get('answer')?.touched)">
-              Answer is required.
-            </div> -->
           </div>
           <div class="form-actions">
             <button type="submit" [disabled]="answerForm.invalid">Send</button>
@@ -72,4 +80,12 @@
       </div>
     </div>
   </div>
+
+  <!-- Pagination Controls -->
+  <div class="pagination-controls">
+    <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+  </div>
 </section>
+
