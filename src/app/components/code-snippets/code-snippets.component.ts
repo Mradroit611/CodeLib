@@ -29,9 +29,10 @@ export class CodeSnippetsComponent implements OnInit {
     this.authService.authStatus$.subscribe(loggedIn => {
       this.isLoggedIn = loggedIn;
     });
-    this.dbService.getAllSnippet().then((data: any) => {
+    this.dbService.getAllSnippets().then((data: any) => {
       console.log(data);
       this.items = data;
+      this.sortItemsByDate(); // Sort items by date
       this.updatePaginatedItems(); // Initialize pagination
     });
   }
@@ -69,6 +70,10 @@ export class CodeSnippetsComponent implements OnInit {
 
   get totalPages(): number {
     return Math.ceil(this.items.length / this.itemsPerPage);
+  }
+
+  private sortItemsByDate() {
+    this.items.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
   }
 
   private updatePaginatedItems() {

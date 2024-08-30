@@ -17,7 +17,7 @@
 
     <div class="heading-description" *ngIf="selectedHeading">
       <h2>{{ selectedHeading }}</h2>
-      <p>{{ headingData.description }}</p>
+      <p [innerHTML]="formatDescription(headingData.description || '')"></p>
     </div>
   </div>
 </div>

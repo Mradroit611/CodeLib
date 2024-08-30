@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { notesData, NotesData } from '../../notes-data'; // Import your type or interface for notes data
 import { CommonModule } from '@angular/common';
-import { notesData, NotesData } from '../../notes-data';
 
 @Component({
   selector: 'app-notes',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports:[CommonModule],
   templateUrl: './notes.component.html',
-  styleUrl: './notes.component.scss'
+  styleUrls: ['./notes.component.scss']
 })
-export class NotesComponent implements OnInit{
+export class NotesComponent implements OnInit {
   topic: string = '';
   notesData: { [heading: string]: { description: string } } = {};
   selectedHeading: string | null = null;
@@ -40,5 +38,25 @@ export class NotesComponent implements OnInit{
   selectHeading(heading: string): void {
     this.selectedHeading = heading;
     this.headingData = this.notesData[heading] || {};
+  }
+
+  formatDescription(description: string): string {
+    // Check for undefined and default to an empty string if needed
+    if (!description) {
+      return '';
+    }
+
+    // Replace newlines with <br> tags
+    description = description.replace(/\n/g, '<br>');
+
+    // Check for URLs and replace them with clickable links
+    const urlPattern = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    description = description.replace(urlPattern, '<a href="$1" target="_blank">$1</a>');
+
+    // Convert bullet points to HTML list
+    description = description.replace(/^(\d+)\)/gm, '<li>').replace(/(?:\r\n|\r|\n)/g, '</li>\n');
+    description = '<ul>' + description + '</ul>';
+
+    return description;
   }
 }

@@ -12,6 +12,7 @@ import { AuthGuard } from './auth.guard';
 import { ViewSnippetComponent } from './components/view-snippet/view-snippet.component';
 import { DiscussionComponent } from './components/discussion/discussion.component';
 import { NotesComponent } from './components/notes/notes.component';
+import { CommunityComponent } from './components/community/community.component';
 
 export const routes: Routes = [
     {path: 'sign-in', component: SignInComponent},
@@ -20,7 +21,7 @@ export const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'notes/:topic', component: NotesComponent },
     {path: 'sign-up', component: SignUpComponent},
-    {path: 'codeSnippet', component: CodeSnippetsComponent, },
+    {path: 'codeSnippet', component: CodeSnippetsComponent, }, 
     {path: 'snippet/:id', component: ViewSnippetComponent},
     // {path: 'community', component: CommunityComponent},
     {path: 'discussion', component: DiscussionComponent, canActivate: [AuthGuard]},

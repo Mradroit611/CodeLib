@@ -1,8 +1,33 @@
 [
+  {
+    "image": "/languages/html.png",
+    "topic": "HTML",
+    "description": "HTML is a markup language that structures the content of web pages. It defines elements like headings, paragraphs, and links, and provides the basic framework for web design."
+  },
+  {
+    "image": "/languages/css.png",
+    "topic": "CSS",
+    "description": "CSS styles the visual presentation of web pages. It controls layout, colors, fonts, and spacing, working alongside HTML and JavaScript to enhance design and user experience."
+  },
     {
       "image": "/languages/js.png",
       "topic": "JavaScript",
       "description": "JavaScript is a language that makes websites interactive and dynamic. It runs in browsers and can also be used on servers. It works with HTML and CSS."
+    },
+    {
+      "image": "/languages/typescript.png",
+      "topic": "TypeScript",
+      "description": "TypeScript is a statically typed superset of JavaScript that compiles to plain JavaScript, providing enhanced tooling and error-checking capabilities."
+    },
+    {
+      "image": "/languages/nodejs.png",
+      "topic": "NodeJs",
+      "description": "Node.js is a runtime that lets you run JavaScript on the server side. It’s designed for building fast, scalable network applications using a non-blocking, event-driven model."
+    },
+    {
+      "image": "/languages/react.png",
+      "topic": "ReactJS",
+      "description": "React is a library for building user interfaces. It allows you to create interactive and dynamic web apps using reusable components. It focuses on efficient updates and rendering."
     },
     {
       "image": "/languages/angular.png",
@@ -15,19 +40,10 @@
       "description": "Python is an interpreted, high-level programming language with dynamic semantics, known for its readability and versatility."
     },
     {
-      "image": "/languages/react.png",
-      "topic": "React",
-      "description": "React is a library for building user interfaces. It allows you to create interactive and dynamic web apps using reusable components. It focuses on efficient updates and rendering."
-    },
-    {
-      "image": "/languages/typescript.png",
-      "topic": "Typescript",
-      "description": "TypeScript is a statically typed superset of JavaScript that compiles to plain JavaScript, providing enhanced tooling and error-checking capabilities."
-    },
-    {
-      "image": "/languages/nodejs.png",
-      "topic": "NodeJs",
-      "description": "Node.js is a runtime that lets you run JavaScript on the server side. It’s designed for building fast, scalable network applications using a non-blocking, event-driven model."
+      "image": "/languages/github.png",
+      "topic": "Github",
+      "description": "GitHub is a platform for version control and collaboration. It hosts code repositories, tracks changes, and facilitates team collaboration on software projects using Git."
     }
+    
   ]
   

@@ -1,5 +1,5 @@
 <form class="form-container" [formGroup]="snippetForm" (ngSubmit)="save()">
-  <h2>Share your code snippet</h2>
+  <h2>Share your code snippets</h2>
 
   <div class="form-group">
     <label for="name">Name</label>
@@ -21,10 +21,16 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="code">Code</label>
-    <textarea id="code" placeholder="Write your code here" formControlName="code"></textarea>
-    <div class="error-message" *ngIf="code.invalid && (code.dirty || code.touched)">Code is required</div>
+  <div formArrayName="codes" class="form-group">
+    <div *ngFor="let codeControl of codes.controls; let i = index" [formGroupName]="i" class="code-group">
+      <label for="code-{{i}}">Code {{i + 1}}</label>
+      <textarea id="code-{{i}}" placeholder="Write your code here" formControlName="code"></textarea>
+      <div class="error-message" *ngIf="codeControl.get('code')?.invalid && (codeControl.get('code')?.dirty || codeControl.get('code')?.touched)">
+        Code is required
+      </div>
+      <button type="button" (click)="removeCode(i)">Remove Code</button>
+    </div>
+    <button type="button" (click)="addCode()">Add Code</button>
   </div>
 
   <div class="form-group">

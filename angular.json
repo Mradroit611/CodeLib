@@ -91,6 +91,7 @@
               }
             ],
             "styles": [
+              "node_modules/highlight.js/styles/default.css",
               "src/styles.scss"
             ],
             "scripts": []

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, Validators, FormControl, FormGroup, ValidatorFn, AbstractControl, ValidationErrors, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, Validators, FormControl, FormGroup, FormArray, ValidatorFn, AbstractControl, ValidationErrors, FormsModule } from '@angular/forms';
 import { DbService } from '../../services/db.service';
 import { Snippet } from '../../model';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-community',
@@ -26,7 +25,7 @@ export class CommunityComponent {
     name: new FormControl('', Validators.required),
     title: new FormControl('', Validators.required),
     description: new FormControl('', [Validators.required, this.wordLimitValidator]),
-    code: new FormControl('', Validators.required),
+    codes: new FormArray([this.createCodeControl()])
   });
 
   // Add loading and error states
@@ -47,19 +46,37 @@ export class CommunityComponent {
     return this.snippetForm.get('description')!;
   }
 
-  get code() {
-    return this.snippetForm.get('code')!;
+  get codes() {
+    return this.snippetForm.get('codes') as FormArray;
+  }
+
+  createCodeControl() {
+    return new FormGroup({
+      code: new FormControl('', Validators.required)
+    });
+  }
+
+  addCode() {
+    this.codes.push(this.createCodeControl());
+  }
+
+  removeCode(index: number) {
+    if (this.codes.length > 1) {
+      this.codes.removeAt(index);
+    }
   }
 
   async save() {
     if (this.snippetForm.valid) {
       this.loading = true;
       this.errorMessage = null; // Clear previous errors
+
+      // Map codes safely
       const snippetData: Snippet = { 
         name: this.snippetForm.value.name ?? '',
         title: this.snippetForm.value.title ?? '',
         description: this.snippetForm.value.description ?? '',
-        code: this.snippetForm.value.code ?? '',
+        codes: (this.snippetForm.value.codes as { code: string }[]).map(code => code.code ?? ''),
         createdAt: new Date(),
       };
 
@@ -67,8 +84,6 @@ export class CommunityComponent {
         await this.dbService.createSnippet(snippetData);
         this.snippetForm.reset();
         this.loading = false;
-        // Optionally navigate or refresh the data
-        // For example, you can navigate back to the snippets list
         this.router.navigate(['/codeSnippet']);
       } catch (error) {
         console.error('Error creating snippet:', error);

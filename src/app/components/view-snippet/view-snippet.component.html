@@ -1,4 +1,17 @@
-<div>
-    <h3>{{codeSnippet.title}}</h3>
-    <pre>{{codeSnippet.code}}</pre>
+<div class="snippet-container">
+  <h3>{{ codeSnippet.title }}</h3>
+  <p class="description">{{ codeSnippet.description }}</p>
+
+  <div *ngFor="let code of codeSnippet.codes; let i = index">
+    <div class="code-block">
+      <h4>{{ getCodeTitle(code) }}</h4>
+      <hr>
+      <pre>
+        <div class="copy-button-container">
+          <button (click)="copyCode(code)">Copy Code</button>
+        </div>
+        <code [innerHTML]="highlightedCode[i]"></code>
+      </pre>
+    </div>
+  </div>
 </div>

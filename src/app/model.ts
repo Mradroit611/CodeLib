@@ -1,10 +1,8 @@
-// model.ts
 export interface Snippet {
-  id?: string; // Make sure id is optional if it's not always provided
+  id?: string;  // Optional, in case you want to handle document IDs
   name: string;
-  title?: string;
+  title: string;
   description: string;
-  question?: string;
-  code: string;
+  codes: string[]; // Update to an array of strings
   createdAt: Date;
 }

@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-// import { initializeApp } from 'firebase/app';
 import { doc, getDoc, getDocs, getFirestore, Timestamp } from 'firebase/firestore';
 import { collection, addDoc } from 'firebase/firestore';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { Snippet } from '../model';
+
 @Injectable({
   providedIn: 'root',
 })
 export class DbService {
-  private db?: any;
-  constructor(private authService: AuthService, private router:Router) {
+  private db: any;
+
+  constructor(private authService: AuthService, private router: Router) {
     this.db = getFirestore();
   }
 
@@ -28,7 +29,7 @@ export class DbService {
     }
   }
 
-  async getAllSnippet() {
+  async getAllSnippets() {
     let result: any[] = [];
     const querySnapshot = await getDocs(collection(this.db, 'snippets'));
     querySnapshot.forEach((doc) => {
@@ -41,7 +42,6 @@ export class DbService {
         createdAt,
       });
     });
-
     return result;
   }
 
@@ -53,15 +53,14 @@ export class DbService {
       console.log('Document data:', docSnap.data());
       return docSnap.data();
     } else {
-      // docSnap.data() will be undefined in this case
-      return{
+      return {
         id: "",
         name: "",
         title: "",
         description: "",
-        code: "",
+        codes: [],
         createdAt: new Date(),
-      }
+      };
     }
   }
 }

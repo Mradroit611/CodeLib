@@ -1,24 +1,28 @@
 {
+  "HTML": {
+    "Introduction": {
+      "description": "HTML, or HyperText Markup Language, is the standard language used to create and design webpages. \n Imagine HTML as the blueprint or skeleton of a webpage. Just like a blueprint outlines where different parts of a building will go, HTML outlines where different elements like text, images, and links will appear on a webpage. \n Here's a simple breakdown: \n <strong> 1. Tags: </strong>Think of tags as special codes that tell the browser what type of content you’re putting on the page. For instance, <p> is like a label saying \"this is a paragraph,\" and 'h1' says \"this is a big heading.\"\n <stromg>2. Attributes: </strong> These are like extra details you can add to your tags. For example, if you want a link to take you to a specific website, you use the href attribute inside an <a> tag to tell it where to go.\n<strong> 3 Elements: </strong>An element is a combination of a tag and the content inside it. For example, <p>This is a paragraph</p> is an element where <p> tells the browser to display a paragraph, and \"This is a paragraph\" is the actual text.\n<strong>4. Document Structure: </strong>Every HTML document starts with a declaration that says it's HTML, followed by a structure that looks like this:\n <html>: The overall container for everything on the page.\n <head>: Contains meta-information like the title of the page.\n <body>: Contains the content you actually see, like text and images. \n\n Code Link: http://HTML Structure" 
+    }
+  },
+  "CSS": {
+    "Introduction": {
+      "description": "CSS (Cascading Style Sheets) is a language used to control the appearance of web pages. It allows you to specify how HTML elements should be displayed, including aspects such as colors, fonts, layout, and spacing. By using CSS, you can separate the content of a web page (written in HTML) from its design, making it easier to maintain and customize the look and feel of websites."
+    }
+  },
   "JavaScript": {
     "Introduction": {
-      "description": "JavaScript is a versatile programming language primarily used for creating interactive web pages."
-    },
-    "Syntax": {
-      "description": "JavaScript syntax is the set of rules that define a correctly structured JavaScript program."
+      "description": "JavaScript is a versatile programming language commonly used to create dynamic and interactive effects on websites. It enables developers to manipulate web page content, control multimedia, animate elements, and handle user interactions in real-time. Here’s a brief overview: \n<strong>What is JavaScript?</strong> \nPurpose: JavaScript is used to add interactivity and functionality to web pages. It allows developers to create features such as form validation, interactive maps, animations, and more, all of which enhance user experience. \nIntegration: JavaScript code can be embedded directly into HTML pages or included as separate files. It runs in the web browser, enabling client-side scripting, but can also be used on the server-side with environments like Node.js.\n<strong> Key Features: </strong>\nEvent Handling: JavaScript can respond to user actions like clicks, form submissions, and keyboard inputs. \nDOM Manipulation: It can dynamically update and modify the content, structure, and style of HTML documents.\n AJAX: JavaScript enables asynchronous data loading, allowing web pages to update content without reloading.\n Validation: It can validate user inputs before sending data to a server, improving form handling and data integrity. \n Syntax: JavaScript uses variables, functions, and objects to perform various tasks. It supports both procedural and object-oriented programming paradigms."
     }
   },
   "TypeScript": {
     "Introduction": {
-      "description": "TypeScript is a typed superset of JavaScript that compiles to plain JavaScript."
-    },
-    "Features": {
-      "description": "TypeScript adds optional static typing and other features to JavaScript."
+      "description": "TypeScript is a strongly-typed, compiled superset of JavaScript that adds static typing to the language. Developed by Microsoft, TypeScript aims to improve the development experience and code quality for JavaScript applications by providing additional features and tools."
     }
   },
   "NodeJs": {
     "What is Node.js": {
-      "description": "Node.js is a runtime environment that allows you to run JavaScript code on the server side. It’s built on Chrome’s V8 JavaScript engine and helps developers build fast and scalable network applications. Essentially, it lets you use JavaScript to write server-side code, not just code that runs in a web browser."
-    },
+      "description": "<strong>Node.js</strong> is a runtime environment that allows you to run JavaScript code on the server side. It’s built on Chrome’s V8 JavaScript engine and helps developers build fast and scalable network applications. Essentially, it lets you use JavaScript to write server-side code, not just code that runs in a web browser. \n\n• JavaScript Runtime: Executes JavaScript code server-side.\n• Built on V8 Engine: Uses Google’s V8 engine for fast performance.\n• Non-blocking I/O: Handles asynchronous operations without blocking.\n• Single-threaded: Operates on a single thread with concurrency through the event loop.\n• NPM Package Manager: Provides access to a vast ecosystem of libraries.\n• Server-side Scripting: Ideal for building scalable server-side applications and APIs.\n• Cross-platform: Runs on Windows, macOS, and Linux.\n• Modular Architecture: Uses modules for organized and reusable code.\n• Community-driven: Supported by a large and active developer community.\n• JSON and REST: Well-suited for JSON and RESTful API interactions."
+},
     "Event-Driven Programming": {
       "description": "Event-driven programming is a style of programming where the flow of the program is determined by events, such as user actions (clicks, keystrokes) or messages from other programs. In this approach, the program listens for and responds to these events, often using event handlers or callbacks to execute specific code when an event occurs."
     },
@@ -41,7 +45,7 @@
       "description": "It refers to the process of generating HTML content on the server rather than in the client's browser, which can improve load times and SEO for web applications"
     },
     "Event Loop ": {
-      "description": "Event loop pick up the request from the Event queue on FIFO base and then it checks that the request is non-blocking (asynchronous) or blocking (synchronous) operation if it's a non-blocking then it will process the request but if it is blocking operation request then it will pass to the thread pool"
+      "description": "Event loop pick up the request from the Event queue on FIFO base and then it checks that the request is non-blocking (asynchronous) or blocking (synchronous) operation if it's a non-blocking then it will process the request but if it is blocking operation request then it will pass to the thread pool http://localhost:4200/snippet/7zKYudrfqWnJfZAVdU4y"
     },
     "Streams": {
       "description": "streams are a way to handle data that flows continuously. Instead of waiting for all the data to be available, streams let you process it piece by piece."
@@ -54,6 +58,26 @@
     },
     "Middleware": {
       "description": "Middleware acts as an interface between the client and server to manage and handle HTTP requests and responses. "
+    }
+  },
+  "ReactJS": {
+    "Introduction": {
+      "description": "ReactJS is a popular JavaScript library developed by Facebook for building user interfaces, particularly single-page applications where data changes over time. It allows developers to create reusable UI components and manage the state of those components efficiently."
+    }
+  },
+  "Angular": {
+    "Introduction": {
+      "description": "Angular is a comprehensive, open-source framework developed by Google for building dynamic and scalable web applications. It is a popular choice for developing single-page applications (SPAs) and provides a wide array of features to enhance both the development process and the performance of web applications."
+    }
+  },
+  "Python": {
+    "Introduction": {
+      "description": "Python is a high-level, interpreted programming language known for its simplicity, readability, and versatility. It is widely used across various domains including web development, data science, artificial intelligence, scientific computing, automation, and more. "
+    }
+  },
+  "Github": {
+    "Introduction": {
+      "description": "GitHub is a web-based platform that uses Git for version control and collaboration. It provides a space for developers to host and manage their code repositories, track changes, and collaborate on projects"
     }
   }
 }

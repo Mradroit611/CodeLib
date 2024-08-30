@@ -27,16 +27,19 @@
 
     .headings-list {
       flex: 1;
-      padding: 20px;
+      padding: 10px; // Reduced padding for a more compact look
       border-right: 1px solid #ddd;
       background: #f4f4f4;
       overflow-y: auto; // Allow scrolling if the list is long
 
       h2 {
-        font-size: 1.8rem;
+        font-size: 1.5rem; // Reduced font size for headings
         color: #444;
         margin-bottom: 15px;
         word-wrap: break-word; // Ensure headings break if they are too long
+        overflow: hidden; // Ensure headings do not overflow their container
+        text-overflow: ellipsis; // Add ellipsis for long text
+        white-space: nowrap; // Prevent headings from wrapping
       }
 
       ul {
@@ -58,21 +61,12 @@
             color: #fff; // Text color for selected heading
           }
 
-          a {
-            text-decoration: none;
-            color: inherit; // Inherit text color from the parent
-            font-size: 1.2rem;
-            display: block; // Ensure link covers the entire list item
-            width: 100%; // Full width of the list item
-            height: 100%; // Full height of the list item
-            line-height: 1.4; // Improve text alignment
-            transition: background 0.3s ease, color 0.3s ease;
-
-            &:hover {
-              background: #0056b3; // Background color on hover
-              color: #fff; // Text color on hover
-              border-radius: 4px; // Rounded corners on hover
-            }
+          p {
+            margin: 0; // Remove default margin
+            word-wrap: break-word; // Ensure text wraps correctly
+            overflow: hidden; // Ensure text does not overflow
+            text-overflow: ellipsis; // Add ellipsis for long text
+            white-space: nowrap; // Prevent text from wrapping
           }
         }
       }
@@ -82,12 +76,16 @@
       flex: 2;
       padding: 20px;
       background: #fff; // White background for the description
+      height: 100vh; // Fixed height for the description section
+      overflow-y: auto; // Allow scrolling if content is too long
 
       h2 {
-        font-size: 2rem;
+        font-size: 1.6rem; // Adjusted font size for headings in description
         color: #333;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         word-wrap: break-word; // Ensure long headings break to avoid overflow
+        overflow: hidden; // Ensure headings do not overflow their container
+        text-overflow: ellipsis; // Add ellipsis for long text
       }
 
       p {
@@ -95,6 +93,32 @@
         color: #666;
         line-height: 1.6;
         word-wrap: break-word; // Ensure long paragraphs break to avoid overflow
+      }
+
+      a {
+        color: #007bff; // Primary link color
+        text-decoration: none; // Remove underline
+        font-weight: bold; // Make link text bold
+        border-bottom: 2px solid #007bff; // Add a border at the bottom of the link
+
+        &:hover {
+          color: #0056b3; // Darker color on hover
+          text-decoration: underline; // Add underline on hover
+        }
+
+        &:active {
+          color: #004494; // Even darker color when active
+          border-bottom: 2px solid #004494; // Adjust border color on active
+        }
+      }
+
+      ul {
+        padding-left: 20px;
+        list-style-type: disc;
+      }
+
+      li {
+        margin-bottom: 10px;
       }
     }
   }
@@ -107,12 +131,12 @@
 
     .headings-list {
       border-right: none;
-      border-bottom: 1px solid #ddd;
-      margin-bottom: 20px;
+      height: auto; // Allow height to adjust on tablets
     }
 
     .heading-description {
       padding: 20px 10px;
+      height: auto; // Allow height to adjust on tablets
     }
   }
 }
@@ -124,14 +148,14 @@
   }
 
   .notes-content {
-    padding: 5px;
-
     .headings-list {
       padding: 10px;
+      height: auto; // Allow height to adjust on mobile
     }
 
     .heading-description {
       padding: 10px;
+      height: auto; // Allow height to adjust on mobile
     }
 
     ul {
@@ -141,7 +165,7 @@
     }
 
     .heading-description h2 {
-      font-size: 1.6rem; // Adjust heading size in description for mobile
+      font-size: 1.4rem; // Adjust heading size in description for mobile
     }
 
     .heading-description p {
@@ -157,14 +181,14 @@
   }
 
   .notes-content {
-    padding: 5px;
-
     .headings-list {
       padding: 5px;
+      height: auto; // Allow height to adjust on very small screens
     }
 
     .heading-description {
       padding: 5px;
+      height: auto; // Allow height to adjust on very small screens
     }
 
     ul {
@@ -174,7 +198,7 @@
     }
 
     .heading-description h2 {
-      font-size: 1.4rem; // Further adjust heading size in description for very small screens
+      font-size: 1.3rem; // Further adjust heading size in description for very small screens
     }
 
     .heading-description p {

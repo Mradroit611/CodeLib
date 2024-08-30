@@ -67,6 +67,10 @@ export class ChatbotComponent implements AfterViewChecked {
   getChatbotResponse(message: string): string {
     const lowerCaseMessage = message.toLowerCase();
 
+    if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi') || lowerCaseMessage.includes('hey') || lowerCaseMessage.includes('what\'s up')) {
+      return "Hi there! How can I assist you today?";
+    }
+
     // Responses for HTML
     if (lowerCaseMessage.includes('html')) {
       return "HTML (HyperText Markup Language) is the standard language for creating web pages. It describes the structure of web pages using markup tags.";
@@ -92,7 +96,7 @@ export class ChatbotComponent implements AfterViewChecked {
       return "React is a JavaScript library for building user interfaces. It allows you to create reusable UI components and manage the state of your application.";
     }
 
-    if (lowerCaseMessage.includes('owner') || lowerCaseMessage.includes('ceo')) {
+    if (lowerCaseMessage.includes('owner') || lowerCaseMessage.includes('ceo') || lowerCaseMessage.includes('founder') || lowerCaseMessage.includes('co founder') || lowerCaseMessage.includes('boss'))  {
       return "Sanjay Verma is the CEO and owner of this site. If you have any questions or need assistance, feel free to ask!";
     }
     
